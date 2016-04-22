@@ -15,7 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+
+        
+        let user = User(firstName: "Yoshikuni", lastName: "Kato", age: 27)
+        let userViewModel = UserViewModel(user: user)
+        
+        let userViewController = UIStoryboard(name: "UserViewController", bundle: nil).instantiateViewControllerWithIdentifier("UserViewController") as! UserViewController
+        userViewController.viewModel = userViewModel
+
+        
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window?.rootViewController = userViewController
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
