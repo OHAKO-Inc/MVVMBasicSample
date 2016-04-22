@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         
-        let user = User(firstName: "Yoshikuni", lastName: "Kato", age: 27)
+        let user = User(firstName: "Yoshikuni", lastName: "Kato", age: 27, imageName: "yoshikuni")
         let userViewModel = UserViewModel(user: user)
         
         let userViewController = UIStoryboard(name: "UserViewController", bundle: nil).instantiateViewControllerWithIdentifier("UserViewController") as! UserViewController

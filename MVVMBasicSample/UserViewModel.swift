@@ -14,14 +14,28 @@ protocol UserViewModelProtocol {
     var image: UIImage? { get }
 }
 
-struct UserViewModel: UserViewModelProtocol {
+class UserViewModel: UserViewModelProtocol {
     
     let fullName: String
     let age: String
-    var image: UIImage?
+    var image: UIImage? {
+        didSet {
+            imageDidSetClosure?(image)
+        }
+    }
+    
+    var imageDidSetClosure: ((UIImage?) -> ())?
     
     init(user: User) {
         fullName = "\(user.firstName) \(user.lastName)"
         age = "\(user.age)歳"
+        
+        // some network requests
+        let delay = 3.0 * Double(NSEC_PER_SEC)
+        let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue(), {
+            self.image = UIImage(named: user.imageName)
+        })
     }
+    
 }

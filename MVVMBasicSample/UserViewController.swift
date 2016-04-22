@@ -20,6 +20,10 @@ class UserViewController: UIViewController {
         super.viewDidLoad()
         nameLabel.text = viewModel.fullName
         ageLabel.text = viewModel.age
+        
+        viewModel.imageDidSetClosure = { [unowned self] (image) -> () in
+            self.userImageView.image = image
+        }
     }
     
 }
