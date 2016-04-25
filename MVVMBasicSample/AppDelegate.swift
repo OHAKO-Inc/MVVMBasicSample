@@ -16,43 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
+        let samplesViewController = UIStoryboard(name: String(SamplesViewController), bundle: nil).instantiateInitialViewController() as! SamplesViewController
+
+        let navigationController = UINavigationController(rootViewController: samplesViewController)
+
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window?.rootViewController = prepareUsersViewController()
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
-        
+
         return true
     }
-    
-    private func prepareUserViewController() -> UIViewController {
-        let user = User(firstName: "Yoshikuni", lastName: "Kato", age: 27, imageName: "yoshikuni")
-        let userViewModel = UserViewModel(user: user)
-        
-        let userViewController = UIStoryboard(name: "UserViewController", bundle: nil).instantiateViewControllerWithIdentifier("UserViewController") as! UserViewController
-        userViewController.viewModel = userViewModel
 
-        return userViewController
-    }
-    
-    private func prepareUsersViewController() -> UIViewController {
-        let cellModels: [UsersTableCellModelType] = {
-            let users = [
-                User(firstName: "Emma", lastName: "Bradley", age: 27, imageName: "yoshikuni"),
-                User(firstName: "Alice", lastName: "Baker", age: 51, imageName: "yoshikuni"),
-                User(firstName: "Edward", lastName: "Diaz", age: 10, imageName: "yoshikuni")
-            ]
-            // Names were generated at http://uinames.com/
-            return users.map { (user) -> UsersTableCellModel in
-                return UsersTableCellModel(user: user)
-            }
-        }()
-        
-        let usersTableViewDataSource = UsersTableViewDataSource(cellModels: cellModels)
-        let usersViewController = UIStoryboard(name: String(UsersViewController), bundle: nil).instantiateInitialViewController() as! UsersViewController
-        usersViewController.dataSource = usersTableViewDataSource
-        
-        return usersViewController
-    }
- 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -77,4 +51,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-

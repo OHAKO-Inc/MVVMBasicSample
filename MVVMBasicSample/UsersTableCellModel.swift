@@ -13,9 +13,9 @@ protocol UsersTableCellModelType {
 }
 
 struct UsersTableCellModel: UsersTableCellModelType {
-    
+
     let fullname: String
-    
+
     init(user: User) {
         fullname = "\(user.firstName) \(user.lastName)"
     }

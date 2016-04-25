@@ -9,10 +9,7 @@
 import UIKit
 
 class UsersTableViewDataSource: NSObject {
-    let cellModels: [UsersTableCellModelType]
-    init(cellModels: [UsersTableCellModelType]) {
-        self.cellModels = cellModels
-    }
+    var cellModels = [UsersTableCellModelType]()
 }
 
 extension UsersTableViewDataSource: UITableViewDataSource {

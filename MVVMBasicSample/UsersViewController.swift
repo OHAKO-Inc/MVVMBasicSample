@@ -10,10 +10,17 @@ import UIKit
 
 class UsersViewController: UIViewController {
 
-    var dataSource: UsersTableViewDataSource!
-    
+    var viewModel: UsersViewModel! {
+        didSet {
+            dataSource.cellModels = viewModel.cellModels
+            tableView?.reloadData()
+        }
+    }
+
+    private let dataSource = UsersTableViewDataSource()
+
     @IBOutlet weak var tableView: UITableView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = dataSource

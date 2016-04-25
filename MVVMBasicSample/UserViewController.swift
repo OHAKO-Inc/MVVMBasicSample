@@ -9,21 +9,25 @@
 import UIKit
 
 class UserViewController: UIViewController {
-    
+
     var viewModel: UserViewModel!
-    
+
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
-   
+
     override func viewDidLoad() {
         super.viewDidLoad()
         nameLabel.text = viewModel.fullName
         ageLabel.text = viewModel.age
-        
+
         viewModel.imageDidSetClosure = { [unowned self] (image) -> () in
             self.userImageView.image = image
         }
     }
-    
+
+    deinit {
+        print("UserViewController deinit")
+    }
+
 }

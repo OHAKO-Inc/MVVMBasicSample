@@ -11,7 +11,7 @@ import UIKit
 class UsersTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
-    
+
     func configure(cellModel: UsersTableCellModelType) {
         nameLabel.text = cellModel.fullname
     }

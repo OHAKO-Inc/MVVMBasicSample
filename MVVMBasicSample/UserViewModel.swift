@@ -15,7 +15,7 @@ protocol UserViewModelProtocol {
 }
 
 class UserViewModel: UserViewModelProtocol {
-    
+
     let fullName: String
     let age: String
     var image: UIImage? {
@@ -23,19 +23,23 @@ class UserViewModel: UserViewModelProtocol {
             imageDidSetClosure?(image)
         }
     }
-    
+
     var imageDidSetClosure: ((UIImage?) -> ())?
-    
+
     init(user: User) {
         fullName = "\(user.firstName) \(user.lastName)"
         age = "\(user.age)歳"
-        
+
         // some network requests
         let delay = 3.0 * Double(NSEC_PER_SEC)
         let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-        dispatch_after(time, dispatch_get_main_queue(), {
-            self.image = UIImage(named: user.imageName)
-        })
+        dispatch_after(time, dispatch_get_main_queue()) { [weak self] () -> () in
+            self?.image = UIImage(named: user.imageName)
+        }
     }
-    
+
+    deinit {
+        print("UserViewModel deinit")
+    }
+
 }
