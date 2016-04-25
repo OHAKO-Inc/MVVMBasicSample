@@ -24,31 +24,31 @@
                                     <constraint firstAttribute="width" constant="240" id="DxF-zO-a0k"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y70-Xe-kFv">
-                                <rect key="frame" x="279" y="190" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;full name&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y70-Xe-kFv">
+                                <rect key="frame" x="254" y="190" width="92" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGq-p4-qPm">
-                                <rect key="frame" x="279" y="389" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXM-Vn-rK5">
+                                <rect key="frame" x="243" y="389" width="115" height="30"/>
+                                <state key="normal" title="fetch user image"/>
+                                <connections>
+                                    <action selector="imageFetchButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hOj-0P-dCI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Gwl-bo-sF6" firstAttribute="top" secondItem="y70-Xe-kFv" secondAttribute="bottom" constant="25" id="2VJ-5o-ZSh"/>
+                            <constraint firstItem="lXM-Vn-rK5" firstAttribute="top" secondItem="Gwl-bo-sF6" secondAttribute="bottom" constant="25" id="9Ds-yr-DnH"/>
+                            <constraint firstItem="lXM-Vn-rK5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LOq-2w-11x"/>
                             <constraint firstItem="Gwl-bo-sF6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="MU9-D9-P9o"/>
                             <constraint firstItem="y70-Xe-kFv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QuX-0a-GZw"/>
-                            <constraint firstItem="PGq-p4-qPm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VlK-Ir-INb"/>
-                            <constraint firstItem="PGq-p4-qPm" firstAttribute="top" secondItem="Gwl-bo-sF6" secondAttribute="bottom" constant="25" id="aki-fK-V1s"/>
                             <constraint firstItem="Gwl-bo-sF6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fqK-NP-dBh"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="ageLabel" destination="PGq-p4-qPm" id="OhP-ao-Juc"/>
                         <outlet property="nameLabel" destination="y70-Xe-kFv" id="mEk-k3-ncY"/>
                         <outlet property="userImageView" destination="Gwl-bo-sF6" id="gB7-cU-e5E"/>
                     </connections>

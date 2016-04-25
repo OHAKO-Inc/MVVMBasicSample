@@ -13,13 +13,16 @@ class UserViewController: UIViewController {
     var viewModel: UserViewModel!
 
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
 
+    @IBAction func imageFetchButtonTapped(sender: AnyObject) {
+        viewModel.imageFetchButtonTapped()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         nameLabel.text = viewModel.fullName
-        ageLabel.text = viewModel.age
 
         viewModel.imageDidSetClosure = { [weak self] (image) -> () in
             self?.userImageView.image = image
