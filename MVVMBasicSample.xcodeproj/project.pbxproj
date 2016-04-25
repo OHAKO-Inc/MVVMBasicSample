@@ -24,6 +24,9 @@
 		E331B88A1CCA1391001E9F0F /* UsersTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331B8891CCA1391001E9F0F /* UsersTableViewDataSource.swift */; };
 		E331B88C1CCA13CD001E9F0F /* UsersTableCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331B88B1CCA13CD001E9F0F /* UsersTableCellModel.swift */; };
 		E331B88E1CCA143B001E9F0F /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331B88D1CCA143B001E9F0F /* UsersViewModel.swift */; };
+		E3ADF60C1CCDCCFF008C0091 /* UserNameViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3ADF60B1CCDCCFF008C0091 /* UserNameViewController.storyboard */; };
+		E3ADF60E1CCDCD30008C0091 /* UserNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ADF60D1CCDCD30008C0091 /* UserNameViewController.swift */; };
+		E3ADF6101CCDCD57008C0091 /* UserNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ADF60F1CCDCD57008C0091 /* UserNameViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,9 @@
 		E331B8891CCA1391001E9F0F /* UsersTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersTableViewDataSource.swift; sourceTree = "<group>"; };
 		E331B88B1CCA13CD001E9F0F /* UsersTableCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersTableCellModel.swift; sourceTree = "<group>"; };
 		E331B88D1CCA143B001E9F0F /* UsersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
+		E3ADF60B1CCDCCFF008C0091 /* UserNameViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserNameViewController.storyboard; sourceTree = "<group>"; };
+		E3ADF60D1CCDCD30008C0091 /* UserNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNameViewController.swift; sourceTree = "<group>"; };
+		E3ADF60F1CCDCD57008C0091 /* UserNameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNameViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +127,7 @@
 				E32446CA1CCDBF11005296E1 /* SamplesViewController.storyboard */,
 				E32446CC1CCDBF81005296E1 /* SamplesViewController.swift */,
 				E331B8831CCA1324001E9F0F /* Models */,
+				E3ADF6081CCDCCC3008C0091 /* ViewWithoutMutableProperty */,
 				E3ADF6051CCDC814008C0091 /* TableViewWithoutMutableProperty */,
 				E3ADF6011CCDC7A9008C0091 /* ViewWithMutableProperty(Closure) */,
 				E331B8531CCA092F001E9F0F /* Assets.xcassets */,
@@ -207,6 +214,32 @@
 			children = (
 				E331B88D1CCA143B001E9F0F /* UsersViewModel.swift */,
 				E331B88B1CCA13CD001E9F0F /* UsersTableCellModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		E3ADF6081CCDCCC3008C0091 /* ViewWithoutMutableProperty */ = {
+			isa = PBXGroup;
+			children = (
+				E3ADF6091CCDCCDE008C0091 /* View */,
+				E3ADF60A1CCDCCE4008C0091 /* ViewModel */,
+			);
+			name = ViewWithoutMutableProperty;
+			sourceTree = "<group>";
+		};
+		E3ADF6091CCDCCDE008C0091 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E3ADF60B1CCDCCFF008C0091 /* UserNameViewController.storyboard */,
+				E3ADF60D1CCDCD30008C0091 /* UserNameViewController.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E3ADF60A1CCDCCE4008C0091 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E3ADF60F1CCDCD57008C0091 /* UserNameViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -319,6 +352,7 @@
 				E331B8571CCA092F001E9F0F /* LaunchScreen.storyboard in Resources */,
 				E331B8541CCA092F001E9F0F /* Assets.xcassets in Resources */,
 				E331B8861CCA1351001E9F0F /* UsersViewController.storyboard in Resources */,
+				E3ADF60C1CCDCCFF008C0091 /* UserNameViewController.storyboard in Resources */,
 				E331B8521CCA092F001E9F0F /* UserViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,6 +380,8 @@
 			files = (
 				E331B87B1CCA0A21001E9F0F /* UserViewController.swift in Sources */,
 				E331B87F1CCA0AFC001E9F0F /* UserViewModel.swift in Sources */,
+				E3ADF6101CCDCD57008C0091 /* UserNameViewModel.swift in Sources */,
+				E3ADF60E1CCDCD30008C0091 /* UserNameViewController.swift in Sources */,
 				E32446CD1CCDBF81005296E1 /* SamplesViewController.swift in Sources */,
 				E331B8881CCA1381001E9F0F /* UsersViewController.swift in Sources */,
 				E331B88A1CCA1391001E9F0F /* UsersTableViewDataSource.swift in Sources */,

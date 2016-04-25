@@ -45,7 +45,12 @@ extension SamplesViewController: UITableViewDelegate {
 
         switch sample {
         case .ViewWithoutMutableProperty:
-            break
+
+            let user = User(firstName: "Emma", lastName: "Bradley", age: 27, imageName: "")
+            let viewModel = UserNameViewModel(user: user)
+            let userNameViewController = UIStoryboard(name: String(UserNameViewController), bundle: nil).instantiateInitialViewController() as! UserNameViewController
+            userNameViewController.viewModel = viewModel
+            self.navigationController?.pushViewController(userNameViewController, animated: true)
 
 
         case .TableViewWithoutMutableProperty:
