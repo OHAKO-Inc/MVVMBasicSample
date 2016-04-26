@@ -24,6 +24,8 @@
 		E331B88A1CCA1391001E9F0F /* UsersTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331B8891CCA1391001E9F0F /* UsersTableViewDataSource.swift */; };
 		E331B88C1CCA13CD001E9F0F /* UsersTableCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331B88B1CCA13CD001E9F0F /* UsersTableCellModel.swift */; };
 		E331B88E1CCA143B001E9F0F /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331B88D1CCA143B001E9F0F /* UsersViewModel.swift */; };
+		E33BCD6F1CCF21FE00C4AD61 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E364FFE11CCDE5A20070651A /* Result.framework */; };
+		E33BCD701CCF220100C4AD61 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E364FFDF1CCDE59F0070651A /* ReactiveCocoa.framework */; };
 		E364FFE01CCDE59F0070651A /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E364FFDF1CCDE59F0070651A /* ReactiveCocoa.framework */; };
 		E364FFE21CCDE5A20070651A /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E364FFE11CCDE5A20070651A /* Result.framework */; };
 		E364FFE71CCDEA040070651A /* UserViewControllerWithRAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E364FFE61CCDEA040070651A /* UserViewControllerWithRAC.swift */; };
@@ -99,6 +101,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E33BCD6F1CCF21FE00C4AD61 /* Result.framework in Frameworks */,
+				E33BCD701CCF220100C4AD61 /* ReactiveCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,6 +638,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = MVVMBasicSampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.ohako-inc.MVVMBasicSampleTests";
@@ -646,6 +654,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = MVVMBasicSampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.ohako-inc.MVVMBasicSampleTests";
