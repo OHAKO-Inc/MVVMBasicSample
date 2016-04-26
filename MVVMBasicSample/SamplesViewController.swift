@@ -50,6 +50,7 @@ extension SamplesViewController: UITableViewDelegate {
             let viewModel = UserNameViewModel(user: user)
             let userNameViewController = UIStoryboard(name: String(UserNameViewController), bundle: nil).instantiateInitialViewController() as! UserNameViewController
             userNameViewController.viewModel = viewModel
+
             self.navigationController?.pushViewController(userNameViewController, animated: true)
 
 
@@ -60,11 +61,9 @@ extension SamplesViewController: UITableViewDelegate {
                 User(firstName: "Alice", lastName: "Baker", age: 51, imageName: "yoshikuni"),
                 User(firstName: "Edward", lastName: "Diaz", age: 10, imageName: "yoshikuni")
             ]
-
             let cellModels: [UsersTableCellModelType] = users.map { (user) -> UsersTableCellModel in
                 return UsersTableCellModel(user: user)
             }
-
             let usersViewModel = UsersViewModel(cellModels: cellModels)
             let usersViewController = UIStoryboard(name: String(UsersViewController), bundle: nil).instantiateInitialViewController() as! UsersViewController
             usersViewController.viewModel = usersViewModel
@@ -76,26 +75,21 @@ extension SamplesViewController: UITableViewDelegate {
 
             let user = User(firstName: "Yoshikuni", lastName: "Kato", age: 27, imageName: "yoshikuni")
             let userViewModel = UserViewModel(user: user)
-
             let userViewController = UIStoryboard(name: String(UserViewController), bundle: nil).instantiateInitialViewController() as! UserViewController
             userViewController.viewModel = userViewModel
 
             self.navigationController?.pushViewController(userViewController, animated: true)
 
 
-           
         case .ViewWithMutablePropertyUsingRACForBinding:
-            
+
             let user = User(firstName: "Yoshikuni", lastName: "Kato", age: 27, imageName: "yoshikuni")
             let userViewModel = UserViewModelWithRAC(user: user)
-            
             let userViewController = UIStoryboard(name: String(UserViewControllerWithRAC), bundle: nil).instantiateInitialViewController() as! UserViewControllerWithRAC
             userViewController.viewModel = userViewModel
-            
+
             self.navigationController?.pushViewController(userViewController, animated: true)
-            
-            
-            break
+
         }
     }
 }

@@ -26,11 +26,11 @@ class MVVMBasicSampleTests: XCTestCase {
     func testViewWithoutMutableProperty() {
         let user = User(firstName: "Yoshikuni", lastName: "Kato", age: 27, imageName: "yoshikuni")
         let expectedFullName = "Yoshikuni Kato"
-        
+
         let userNameViewModel = UserNameViewModel(user: user)
         XCTAssertEqual(userNameViewModel.fullName, expectedFullName)
     }
-    
+
     func testTableViewWithoutMutableProperty() {
         let users = [
             User(firstName: "Emma", lastName: "Bradley", age: 27, imageName: "yoshikuni"),
@@ -42,7 +42,7 @@ class MVVMBasicSampleTests: XCTestCase {
             "Alice Baker",
             "Edward Diaz"
         ]
-        
+
         let cellModels: [UsersTableCellModelType] = users.map { (user) -> UsersTableCellModel in
             return UsersTableCellModel(user: user)
         }
@@ -52,7 +52,7 @@ class MVVMBasicSampleTests: XCTestCase {
             XCTAssertEqual(cellModel.fullname, expectedFullnames[index])
         }
     }
-    
+
     func testViewWithMutablePropertyUsingClosure() {
 
         // for asynchronous test
@@ -69,13 +69,13 @@ class MVVMBasicSampleTests: XCTestCase {
         waitForExpectationsWithTimeout(1.5) { (error) in
             print(error)
         }
-        
+
     }
-    
+
     func testViewWithMutablePropertyUsingRAC() {
         // for asynchronous test
         let expectation = self.expectationWithDescription("image set")
-        
+
         let user = User(firstName: "Yoshikuni", lastName: "Kato", age: 27, imageName: "yoshikuni")
         let userViewModel = UserViewModelWithRAC(user: user)
         userViewModel
@@ -85,15 +85,15 @@ class MVVMBasicSampleTests: XCTestCase {
                 XCTAssertNotNil(image, "image not nil")
                 expectation.fulfill()
         }
-        
+
         userViewModel
             .imageFetchButtonAction
             .apply(nil)
             .start()
-        
+
         waitForExpectationsWithTimeout(1.5) { (error) in
             print(error)
         }
     }
-    
+
 }

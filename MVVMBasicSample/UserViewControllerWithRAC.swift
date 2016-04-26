@@ -13,16 +13,16 @@ import Result
 class UserViewControllerWithRAC: UIViewController {
 
     var viewModel: UserViewModelWithRAC!
-    
+
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var imageFetchButton: UIButton!
 
     private var imageFetchCocoaAction: CocoaAction?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         nameLabel.text = viewModel.fullName
 
         // image binding
@@ -32,7 +32,7 @@ class UserViewControllerWithRAC: UIViewController {
             .observeNext { [weak self] (image) in
                 self?.userImageView.image = image
         }
-        
+
         // button binding
         imageFetchCocoaAction = CocoaAction(viewModel.imageFetchButtonAction, input: nil)
         imageFetchButton.addTarget(imageFetchCocoaAction, action: CocoaAction.selector, forControlEvents: .TouchDown)

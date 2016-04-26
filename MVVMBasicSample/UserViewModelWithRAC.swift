@@ -23,29 +23,29 @@ struct UserViewModelWithRAC {
         })
     })
 
-    
+
     init(user: User) {
         self.user = user
-        
+
         fullName = "\(user.firstName) \(user.lastName)"
-        
-        
+
+
         let fetchedImageSignal = imageFetchButtonAction
             .values
             .flatMap(.Merge) { () -> SignalProducer<UIImage?, NoError> in
                 return SignalProducer<UIImage?, NoError> { (observer, disposable) in
-                    
+
                     let delay = 1.0 * Double(NSEC_PER_SEC)
                     let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
                     dispatch_after(time, dispatch_get_main_queue()) { () -> () in
                         observer.sendNext(UIImage(named: user.imageName))
                         observer.sendCompleted()
                     }
-                    
+
                 }
         }
-        
+
         image <~ fetchedImageSignal
     }
-    
+
 }

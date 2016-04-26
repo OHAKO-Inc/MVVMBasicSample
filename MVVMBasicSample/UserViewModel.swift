@@ -17,7 +17,7 @@ protocol UserViewModelProtocol {
 class UserViewModel: UserViewModelProtocol {
 
     let user: User
-    
+
     let fullName: String
     var image: UIImage? {
         didSet {
@@ -37,7 +37,7 @@ class UserViewModel: UserViewModelProtocol {
             _self.image = UIImage(named: _self.user.imageName)
         }
     }
-    
+
     init(user: User) {
         self.user = user
         fullName = "\(user.firstName) \(user.lastName)"

@@ -18,8 +18,8 @@ class UserViewController: UIViewController {
     @IBAction func imageFetchButtonTapped(sender: AnyObject) {
         viewModel.imageFetchButtonTapped()
     }
-    
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         nameLabel.text = viewModel.fullName
