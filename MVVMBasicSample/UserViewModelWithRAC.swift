@@ -10,7 +10,7 @@ import UIKit
 import ReactiveCocoa
 import Result
 
-class UserViewModelWithRAC {
+struct UserViewModelWithRAC {
 
     let user: User
 
@@ -32,17 +32,13 @@ class UserViewModelWithRAC {
         
         let fetchedImageSignal = imageFetchButtonAction
             .values
-            .flatMap(.Merge) { [weak self] () -> SignalProducer<UIImage?, NoError> in
+            .flatMap(.Merge) { () -> SignalProducer<UIImage?, NoError> in
                 return SignalProducer<UIImage?, NoError> { (observer, disposable) in
                     
                     let delay = 1.0 * Double(NSEC_PER_SEC)
                     let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
                     dispatch_after(time, dispatch_get_main_queue()) { () -> () in
-                        guard let _self = self else {
-                            observer.sendCompleted()
-                            return
-                        }
-                        observer.sendNext(UIImage(named: _self.user.imageName))
+                        observer.sendNext(UIImage(named: user.imageName))
                         observer.sendCompleted()
                     }
                     
@@ -52,7 +48,4 @@ class UserViewModelWithRAC {
         image <~ fetchedImageSignal
     }
     
-    deinit {
-        print("UserViewModelWithRAC deinit")
-    }
 }
