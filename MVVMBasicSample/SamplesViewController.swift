@@ -82,7 +82,19 @@ extension SamplesViewController: UITableViewDelegate {
 
             self.navigationController?.pushViewController(userViewController, animated: true)
 
-        default:
+
+           
+        case .ViewWithMutablePropertyUsingRACForBinding:
+            
+            let user = User(firstName: "Yoshikuni", lastName: "Kato", age: 27, imageName: "yoshikuni")
+            let userViewModel = UserViewModelWithRAC(user: user)
+            
+            let userViewController = UIStoryboard(name: String(UserViewControllerWithRAC), bundle: nil).instantiateInitialViewController() as! UserViewControllerWithRAC
+            userViewController.viewModel = userViewModel
+            
+            self.navigationController?.pushViewController(userViewController, animated: true)
+            
+            
             break
         }
     }

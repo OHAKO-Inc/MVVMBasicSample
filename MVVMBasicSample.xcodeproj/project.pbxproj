@@ -24,9 +24,14 @@
 		E331B88A1CCA1391001E9F0F /* UsersTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331B8891CCA1391001E9F0F /* UsersTableViewDataSource.swift */; };
 		E331B88C1CCA13CD001E9F0F /* UsersTableCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331B88B1CCA13CD001E9F0F /* UsersTableCellModel.swift */; };
 		E331B88E1CCA143B001E9F0F /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331B88D1CCA143B001E9F0F /* UsersViewModel.swift */; };
+		E364FFE01CCDE59F0070651A /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E364FFDF1CCDE59F0070651A /* ReactiveCocoa.framework */; };
+		E364FFE21CCDE5A20070651A /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E364FFE11CCDE5A20070651A /* Result.framework */; };
+		E364FFE71CCDEA040070651A /* UserViewControllerWithRAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E364FFE61CCDEA040070651A /* UserViewControllerWithRAC.swift */; };
+		E364FFEB1CCDEA420070651A /* UserViewModelWithRAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E364FFEA1CCDEA420070651A /* UserViewModelWithRAC.swift */; };
 		E3ADF60C1CCDCCFF008C0091 /* UserNameViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3ADF60B1CCDCCFF008C0091 /* UserNameViewController.storyboard */; };
 		E3ADF60E1CCDCD30008C0091 /* UserNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ADF60D1CCDCD30008C0091 /* UserNameViewController.swift */; };
 		E3ADF6101CCDCD57008C0091 /* UserNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ADF60F1CCDCD57008C0091 /* UserNameViewModel.swift */; };
+		E3CBEF831CCDED06006BCDDF /* UserViewControllerWithRAC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3CBEF821CCDED06006BCDDF /* UserViewControllerWithRAC.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,9 +75,14 @@
 		E331B8891CCA1391001E9F0F /* UsersTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersTableViewDataSource.swift; sourceTree = "<group>"; };
 		E331B88B1CCA13CD001E9F0F /* UsersTableCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersTableCellModel.swift; sourceTree = "<group>"; };
 		E331B88D1CCA143B001E9F0F /* UsersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
+		E364FFDF1CCDE59F0070651A /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
+		E364FFE11CCDE5A20070651A /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		E364FFE61CCDEA040070651A /* UserViewControllerWithRAC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewControllerWithRAC.swift; sourceTree = "<group>"; };
+		E364FFEA1CCDEA420070651A /* UserViewModelWithRAC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModelWithRAC.swift; sourceTree = "<group>"; };
 		E3ADF60B1CCDCCFF008C0091 /* UserNameViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserNameViewController.storyboard; sourceTree = "<group>"; };
 		E3ADF60D1CCDCD30008C0091 /* UserNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNameViewController.swift; sourceTree = "<group>"; };
 		E3ADF60F1CCDCD57008C0091 /* UserNameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNameViewModel.swift; sourceTree = "<group>"; };
+		E3CBEF821CCDED06006BCDDF /* UserViewControllerWithRAC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserViewControllerWithRAC.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +90,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E364FFE01CCDE59F0070651A /* ReactiveCocoa.framework in Frameworks */,
+				E364FFE21CCDE5A20070651A /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +115,7 @@
 		E331B8401CCA092F001E9F0F = {
 			isa = PBXGroup;
 			children = (
+				E364FFE41CCDE65F0070651A /* Frameworks */,
 				E331B84B1CCA092F001E9F0F /* MVVMBasicSample */,
 				E331B8601CCA092F001E9F0F /* MVVMBasicSampleTests */,
 				E331B86B1CCA092F001E9F0F /* MVVMBasicSampleUITests */,
@@ -130,6 +143,7 @@
 				E3ADF6081CCDCCC3008C0091 /* ViewWithoutMutableProperty */,
 				E3ADF6051CCDC814008C0091 /* TableViewWithoutMutableProperty */,
 				E3ADF6011CCDC7A9008C0091 /* ViewWithMutableProperty(Closure) */,
+				E364FFE51CCDE67F0070651A /* ViewWithMutableProperty(RAC) */,
 				E331B8531CCA092F001E9F0F /* Assets.xcassets */,
 				E331B8551CCA092F001E9F0F /* LaunchScreen.storyboard */,
 				E331B8581CCA092F001E9F0F /* Info.plist */,
@@ -161,6 +175,41 @@
 				E331B87C1CCA0AF4001E9F0F /* User.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		E364FFE41CCDE65F0070651A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E364FFE11CCDE5A20070651A /* Result.framework */,
+				E364FFDF1CCDE59F0070651A /* ReactiveCocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E364FFE51CCDE67F0070651A /* ViewWithMutableProperty(RAC) */ = {
+			isa = PBXGroup;
+			children = (
+				E364FFE81CCDEA1F0070651A /* View */,
+				E364FFE91CCDEA270070651A /* ViewModel */,
+			);
+			name = "ViewWithMutableProperty(RAC)";
+			sourceTree = "<group>";
+		};
+		E364FFE81CCDEA1F0070651A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E3CBEF821CCDED06006BCDDF /* UserViewControllerWithRAC.storyboard */,
+				E364FFE61CCDEA040070651A /* UserViewControllerWithRAC.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E364FFE91CCDEA270070651A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E364FFEA1CCDEA420070651A /* UserViewModelWithRAC.swift */,
+			);
+			name = ViewModel;
 			sourceTree = "<group>";
 		};
 		E3ADF6011CCDC7A9008C0091 /* ViewWithMutableProperty(Closure) */ = {
@@ -254,6 +303,7 @@
 				E331B8451CCA092F001E9F0F /* Sources */,
 				E331B8461CCA092F001E9F0F /* Frameworks */,
 				E331B8471CCA092F001E9F0F /* Resources */,
+				E364FFE31CCDE5A50070651A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -348,6 +398,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3CBEF831CCDED06006BCDDF /* UserViewControllerWithRAC.storyboard in Resources */,
 				E32446CB1CCDBF11005296E1 /* SamplesViewController.storyboard in Resources */,
 				E331B8571CCA092F001E9F0F /* LaunchScreen.storyboard in Resources */,
 				E331B8541CCA092F001E9F0F /* Assets.xcassets in Resources */,
@@ -373,6 +424,24 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E364FFE31CCDE5A50070651A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ReactiveCocoa.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E331B8451CCA092F001E9F0F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -380,11 +449,13 @@
 			files = (
 				E331B87B1CCA0A21001E9F0F /* UserViewController.swift in Sources */,
 				E331B87F1CCA0AFC001E9F0F /* UserViewModel.swift in Sources */,
+				E364FFE71CCDEA040070651A /* UserViewControllerWithRAC.swift in Sources */,
 				E3ADF6101CCDCD57008C0091 /* UserNameViewModel.swift in Sources */,
 				E3ADF60E1CCDCD30008C0091 /* UserNameViewController.swift in Sources */,
 				E32446CD1CCDBF81005296E1 /* SamplesViewController.swift in Sources */,
 				E331B8881CCA1381001E9F0F /* UsersViewController.swift in Sources */,
 				E331B88A1CCA1391001E9F0F /* UsersTableViewDataSource.swift in Sources */,
+				E364FFEB1CCDEA420070651A /* UserViewModelWithRAC.swift in Sources */,
 				E331B88C1CCA13CD001E9F0F /* UsersTableCellModel.swift in Sources */,
 				E331B88E1CCA143B001E9F0F /* UsersViewModel.swift in Sources */,
 				E331B84D1CCA092F001E9F0F /* AppDelegate.swift in Sources */,
@@ -533,6 +604,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = MVVMBasicSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.ohako-inc.MVVMBasicSample";
@@ -544,6 +619,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = MVVMBasicSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.ohako-inc.MVVMBasicSample";
