@@ -24,7 +24,7 @@ class UserViewModel: UserViewModelProtocol {
             imageDidSetClosure?(image)
         }
     }
-    var imageDidSetClosure: ((UIImage?) -> ())?
+    var imageDidSetClosure: ((UIImage?) -> ())? // "reference-cycle smell"
 
     func imageFetchButtonTapped() {
         // actually, some network requests

@@ -34,9 +34,16 @@ class UserViewControllerWithRAC: UIViewController {
         }
 
         // button binding
-        imageFetchCocoaAction = CocoaAction(viewModel.imageFetchButtonAction, input: nil)
+        imageFetchCocoaAction = CocoaAction(viewModel.imageFetchAction, input: nil)
         imageFetchButton.addTarget(imageFetchCocoaAction, action: CocoaAction.selector, forControlEvents: .TouchDown)
-
+        viewModel
+            .imageFetchAction
+            .enabled
+            .producer
+            .startWithNext { [weak self] (enabled) in
+                self?.imageFetchButton.enabled = enabled
+        }
+        
     }
 
     deinit {

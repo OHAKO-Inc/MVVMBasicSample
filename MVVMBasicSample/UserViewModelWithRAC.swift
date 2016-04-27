@@ -13,39 +13,40 @@ import Result
 struct UserViewModelWithRAC {
 
     let user: User
-
+    
+    // output
     let fullName: String
     let image = MutableProperty<UIImage?>(nil)
-    let imageFetchButtonAction: Action<AnyObject?, Void, NoError> = Action({ (input) -> SignalProducer<Void, NoError> in
-        return SignalProducer<(), NoError>({ (sink, disposable) in
-            sink.sendNext(())
-            sink.sendCompleted()
-        })
-    })
 
-
+    // input
+    let imageFetchAction: Action<AnyObject?, UIImage?, NoError>
+    
+    
     init(user: User) {
         self.user = user
 
         fullName = "\(user.firstName) \(user.lastName)"
 
-
-        let fetchedImageSignal = imageFetchButtonAction
-            .values
-            .flatMap(.Merge) { () -> SignalProducer<UIImage?, NoError> in
-                return SignalProducer<UIImage?, NoError> { (observer, disposable) in
-
-                    let delay = 1.0 * Double(NSEC_PER_SEC)
-                    let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-                    dispatch_after(time, dispatch_get_main_queue()) { () -> () in
-                        observer.sendNext(UIImage(named: user.imageName))
-                        observer.sendCompleted()
-                    }
-
+        imageFetchAction = Action<AnyObject?, UIImage?, NoError> { (_) -> SignalProducer<UIImage?, NoError> in
+            return SignalProducer<UIImage?, NoError> { (observer, disposable) in
+                let delay = 1.0 * Double(NSEC_PER_SEC)
+                let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                dispatch_after(time, dispatch_get_main_queue()) { () -> () in
+                    observer.sendNext(UIImage(named: user.imageName))
+                    observer.sendCompleted()
                 }
+            }
         }
-
-        image <~ fetchedImageSignal
+        
+        image <~ imageFetchAction.values
+        
+        // for behavior observing
+        imageFetchAction.executing.producer.startWithNext { (executing) in
+            print("actionExecuting: \(executing)")
+        }
+        imageFetchAction.enabled.producer.startWithNext { (enabled) in
+            print("actionEnabled: \(enabled)")
+        }
     }
 
 }
