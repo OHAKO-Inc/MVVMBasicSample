@@ -85,9 +85,8 @@ class MVVMBasicSampleTests: XCTestCase {
                 XCTAssertNotNil(image, "image not nil")
                 expectation.fulfill()
         }
-
         userViewModel
-            .imageFetchButtonAction
+            .imageFetchAction
             .apply(nil)
             .start()
 
