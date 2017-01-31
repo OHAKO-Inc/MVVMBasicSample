@@ -14,13 +14,13 @@ class UsersTableViewDataSource: NSObject {
 
 extension UsersTableViewDataSource: UITableViewDataSource {
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellModels.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(String(UsersTableViewCell), forIndexPath: indexPath) as! UsersTableViewCell
-        cell.configure(cellModels[indexPath.row])
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UsersTableViewCell.self), for: indexPath) as! UsersTableViewCell
+        cell.configure(with: cellModels[indexPath.row])
         return cell
     }
 }

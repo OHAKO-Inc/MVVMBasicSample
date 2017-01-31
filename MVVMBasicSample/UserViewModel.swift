@@ -24,13 +24,13 @@ class UserViewModel: UserViewModelProtocol {
             imageDidSetClosure?(image)
         }
     }
-    var imageDidSetClosure: ((UIImage?) -> ())? // "reference-cycle smell"
+    var imageDidSetClosure: ((UIImage?) -> Void)? // "reference-cycle smell"
 
     func imageFetchButtonTapped() {
         // actually, some network requests
         let delay = 1.0 * Double(NSEC_PER_SEC)
-        let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-        dispatch_after(time, dispatch_get_main_queue()) { [weak self] () -> () in
+        let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: time) { [weak self] _ -> Void in
             guard let _self = self else {
                 return
             }

@@ -17,7 +17,7 @@ class UsersViewController: UIViewController {
         }
     }
 
-    private let dataSource = UsersTableViewDataSource()
+    fileprivate let dataSource = UsersTableViewDataSource()
 
     @IBOutlet weak var tableView: UITableView!
 

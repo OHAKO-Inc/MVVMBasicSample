@@ -48,7 +48,7 @@ class MVVMBasicSampleTests: XCTestCase {
         }
         let usersViewModel = UsersViewModel(cellModels: cellModels)
 
-        for (index, cellModel) in usersViewModel.cellModels.enumerate() {
+        for (index, cellModel) in usersViewModel.cellModels.enumerated() {
             XCTAssertEqual(cellModel.fullname, expectedFullnames[index])
         }
     }
@@ -56,7 +56,7 @@ class MVVMBasicSampleTests: XCTestCase {
     func testViewWithMutablePropertyUsingClosure() {
 
         // for asynchronous test
-        let expectation = self.expectationWithDescription("image set")
+        let expectation = self.expectation(description: "image set")
 
         let user = User(firstName: "Yoshikuni", lastName: "Kato", age: 27, imageName: "yoshikuni")
         let userViewModel = UserViewModel(user: user)
@@ -66,7 +66,7 @@ class MVVMBasicSampleTests: XCTestCase {
         }
         userViewModel.imageFetchButtonTapped()
 
-        waitForExpectationsWithTimeout(1.5) { (error) in
+        waitForExpectations(timeout: 1.5) { (error) in
             print(error)
         }
 
@@ -74,7 +74,7 @@ class MVVMBasicSampleTests: XCTestCase {
 
     func testViewWithMutablePropertyUsingRAC() {
         // for asynchronous test
-        let expectation = self.expectationWithDescription("image set")
+        let expectation = self.expectation(description: "image set")
 
         let user = User(firstName: "Yoshikuni", lastName: "Kato", age: 27, imageName: "yoshikuni")
         let userViewModel = UserViewModelWithRAC(user: user)
@@ -90,7 +90,7 @@ class MVVMBasicSampleTests: XCTestCase {
             .apply(nil)
             .start()
 
-        waitForExpectationsWithTimeout(1.5) { (error) in
+        waitForExpectations(timeout: 1.5) { (error) in
             print(error)
         }
     }

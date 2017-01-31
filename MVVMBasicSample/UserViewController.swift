@@ -15,16 +15,15 @@ class UserViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
 
-    @IBAction func imageFetchButtonTapped(sender: AnyObject) {
+    @IBAction func imageFetchButtonTapped(_ sender: AnyObject) {
         viewModel.imageFetchButtonTapped()
     }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
         nameLabel.text = viewModel.fullName
 
-        viewModel.imageDidSetClosure = { [weak self] (image) -> () in
+        viewModel.imageDidSetClosure = { [weak self] image -> Void in
             self?.userImageView.image = image
         }
     }
