@@ -18,9 +18,7 @@ class UserViewControllerWithRAC: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var imageFetchButton: UIButton!
-
-    fileprivate var imageFetchCocoaAction: CocoaAction<Any>?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
