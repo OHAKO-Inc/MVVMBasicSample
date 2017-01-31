@@ -8,6 +8,7 @@
 
 import UIKit
 import ReactiveCocoa
+import ReactiveSwift
 import Result
 
 class UserViewControllerWithRAC: UIViewController {
@@ -25,25 +26,8 @@ class UserViewControllerWithRAC: UIViewController {
 
         nameLabel.text = viewModel.fullName
 
-        // image binding
-        viewModel
-            .image
-            .signal
-            .observeValues { [weak self] image in
-                self?.userImageView.image = image
-        }
-
-        // button binding
-        imageFetchCocoaAction = CocoaAction(viewModel.imageFetchAction, input: nil)
-        imageFetchButton.addTarget(imageFetchCocoaAction, action: CocoaAction<Any>.selector, for: .touchDown)
-        viewModel
-            .imageFetchAction
-            .isEnabled
-            .producer
-            .startWithValues { [weak self] enabled in
-                self?.imageFetchButton.isEnabled = enabled
-        }
-
+        userImageView.reactive.image <~ viewModel.image
+        imageFetchButton.reactive.pressed = CocoaAction(viewModel.imageFetchAction)
     }
 
     deinit {

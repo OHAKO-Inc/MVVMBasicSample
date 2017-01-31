@@ -20,14 +20,14 @@ struct UserViewModelWithRAC {
     let image = MutableProperty<UIImage?>(nil)
 
     // input
-    let imageFetchAction: Action<AnyObject?, UIImage?, NoError>
-
+    let imageFetchAction: Action<Void, UIImage?, NoError>
+    
     init(user: User) {
         self.user = user
 
         fullName = "\(user.firstName) \(user.lastName)"
 
-        imageFetchAction = Action<AnyObject?, UIImage?, NoError> { _ -> SignalProducer<UIImage?, NoError> in
+        imageFetchAction = Action<Void, UIImage?, NoError> { _ -> SignalProducer<UIImage?, NoError> in
             return SignalProducer<UIImage?, NoError> { (observer, _) in
                 let delay = 1.0 * Double(NSEC_PER_SEC)
                 let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
