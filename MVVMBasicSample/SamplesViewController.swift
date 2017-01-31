@@ -42,7 +42,6 @@ extension SamplesViewController: UITableViewDelegate {
             return
         }
 
-
         switch sample {
         case .viewWithoutMutableProperty:
 
@@ -52,7 +51,6 @@ extension SamplesViewController: UITableViewDelegate {
             userNameViewController.viewModel = viewModel
 
             self.navigationController?.pushViewController(userNameViewController, animated: true)
-
 
         case .tableViewWithoutMutableProperty:
 
@@ -67,7 +65,6 @@ extension SamplesViewController: UITableViewDelegate {
 
             self.navigationController?.pushViewController(usersViewController, animated: true)
 
-
         case .viewWithMutablePropertyUsingClosureForBinding:
 
             let user = User(firstName: "Yoshikuni", lastName: "Kato", age: 27, imageName: "yoshikuni")
@@ -76,7 +73,6 @@ extension SamplesViewController: UITableViewDelegate {
             userViewController.viewModel = userViewModel
 
             self.navigationController?.pushViewController(userViewController, animated: true)
-
 
         case .viewWithMutablePropertyUsingRACForBinding:
 

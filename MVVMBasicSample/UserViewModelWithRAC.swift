@@ -14,22 +14,21 @@ import Result
 struct UserViewModelWithRAC {
 
     let user: User
-    
+
     // output
     let fullName: String
     let image = MutableProperty<UIImage?>(nil)
 
     // input
     let imageFetchAction: Action<AnyObject?, UIImage?, NoError>
-    
-    
+
     init(user: User) {
         self.user = user
 
         fullName = "\(user.firstName) \(user.lastName)"
 
         imageFetchAction = Action<AnyObject?, UIImage?, NoError> { _ -> SignalProducer<UIImage?, NoError> in
-            return SignalProducer<UIImage?, NoError> { (observer, disposable) in
+            return SignalProducer<UIImage?, NoError> { (observer, _) in
                 let delay = 1.0 * Double(NSEC_PER_SEC)
                 let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
                 DispatchQueue.main.asyncAfter(deadline: time) { _ -> Void in
@@ -38,9 +37,9 @@ struct UserViewModelWithRAC {
                 }
             }
         }
-        
+
         image <~ imageFetchAction.values
-        
+
         // for behavior observing
         imageFetchAction.isExecuting.producer.startWithValues { executing in
             print("actionExecuting: \(executing)")

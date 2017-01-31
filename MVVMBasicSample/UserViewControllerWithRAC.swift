@@ -43,7 +43,7 @@ class UserViewControllerWithRAC: UIViewController {
             .startWithValues { [weak self] enabled in
                 self?.imageFetchButton.isEnabled = enabled
         }
-        
+
     }
 
     deinit {
