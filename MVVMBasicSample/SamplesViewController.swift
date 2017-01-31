@@ -61,10 +61,7 @@ extension SamplesViewController: UITableViewDelegate {
                 User(firstName: "Alice", lastName: "Baker", age: 51, imageName: "yoshikuni"),
                 User(firstName: "Edward", lastName: "Diaz", age: 10, imageName: "yoshikuni")
             ]
-            let cellModels: [UsersTableCellModelType] = users.map { (user) -> UsersTableCellModel in
-                return UsersTableCellModel(user: user)
-            }
-            let usersViewModel = UsersViewModel(cellModels: cellModels)
+            let usersViewModel = UsersViewModel(cellModels: users.map(UsersTableCellModel.init))
             let usersViewController = UIStoryboard(name: String(describing: UsersViewController.self), bundle: nil).instantiateInitialViewController() as! UsersViewController
             usersViewController.viewModel = usersViewModel
 

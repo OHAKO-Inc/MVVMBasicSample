@@ -28,11 +28,11 @@ struct UserViewModelWithRAC {
 
         fullName = "\(user.firstName) \(user.lastName)"
 
-        imageFetchAction = Action<AnyObject?, UIImage?, NoError> { (_) -> SignalProducer<UIImage?, NoError> in
+        imageFetchAction = Action<AnyObject?, UIImage?, NoError> { _ -> SignalProducer<UIImage?, NoError> in
             return SignalProducer<UIImage?, NoError> { (observer, disposable) in
                 let delay = 1.0 * Double(NSEC_PER_SEC)
                 let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-                DispatchQueue.main.asyncAfter(deadline: time) { () -> () in
+                DispatchQueue.main.asyncAfter(deadline: time) { _ -> Void in
                     observer.send(value: UIImage(named: user.imageName))
                     observer.sendCompleted()
                 }
@@ -42,10 +42,10 @@ struct UserViewModelWithRAC {
         image <~ imageFetchAction.values
         
         // for behavior observing
-        imageFetchAction.isExecuting.producer.startWithValues { (executing) in
+        imageFetchAction.isExecuting.producer.startWithValues { executing in
             print("actionExecuting: \(executing)")
         }
-        imageFetchAction.isEnabled.producer.startWithValues { (enabled) in
+        imageFetchAction.isEnabled.producer.startWithValues { enabled in
             print("actionEnabled: \(enabled)")
         }
     }

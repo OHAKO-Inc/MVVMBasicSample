@@ -23,8 +23,8 @@ class UserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         nameLabel.text = viewModel.fullName
-
-        viewModel.imageDidSetClosure = { [weak self] (image) -> () in
+        
+        viewModel.imageDidSetClosure = { [weak self] image -> Void in
             self?.userImageView.image = image
         }
     }

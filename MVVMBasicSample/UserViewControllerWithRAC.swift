@@ -29,7 +29,7 @@ class UserViewControllerWithRAC: UIViewController {
         viewModel
             .image
             .signal
-            .observeValues { [weak self] (image) in
+            .observeValues { [weak self] image in
                 self?.userImageView.image = image
         }
 
@@ -40,7 +40,7 @@ class UserViewControllerWithRAC: UIViewController {
             .imageFetchAction
             .isEnabled
             .producer
-            .startWithValues { [weak self] (enabled) in
+            .startWithValues { [weak self] enabled in
                 self?.imageFetchButton.isEnabled = enabled
         }
         

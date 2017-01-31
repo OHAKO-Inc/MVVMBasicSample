@@ -20,7 +20,7 @@ extension UsersTableViewDataSource: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UsersTableViewCell.self), for: indexPath) as! UsersTableViewCell
-        cell.configure(cellModels[indexPath.row])
+        cell.configure(with: cellModels[indexPath.row])
         return cell
     }
 }

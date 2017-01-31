@@ -12,7 +12,7 @@ class UsersTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
 
-    func configure(_ cellModel: UsersTableCellModelType) {
+    func configure(with cellModel: UsersTableCellModelType) {
         nameLabel.text = cellModel.fullname
     }
 }
