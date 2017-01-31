@@ -22,12 +22,12 @@ class SamplesViewController: UIViewController {
 
 extension SamplesViewController: UITableViewDataSource {
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         if let sample = MVVMSample(indexPath: indexPath) {
             cell.textLabel?.text = sample.title
         }
@@ -37,24 +37,24 @@ extension SamplesViewController: UITableViewDataSource {
 }
 
 extension SamplesViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let sample = MVVMSample(indexPath: indexPath) else {
             return
         }
 
 
         switch sample {
-        case .ViewWithoutMutableProperty:
+        case .viewWithoutMutableProperty:
 
             let user = User(firstName: "Emma", lastName: "Bradley", age: 27, imageName: "")
             let viewModel = UserNameViewModel(user: user)
-            let userNameViewController = UIStoryboard(name: String(UserNameViewController), bundle: nil).instantiateInitialViewController() as! UserNameViewController
+            let userNameViewController = UIStoryboard(name: String(describing: UserNameViewController), bundle: nil).instantiateInitialViewController() as! UserNameViewController
             userNameViewController.viewModel = viewModel
 
             self.navigationController?.pushViewController(userNameViewController, animated: true)
 
 
-        case .TableViewWithoutMutableProperty:
+        case .tableViewWithoutMutableProperty:
 
             let users = [
                 User(firstName: "Emma", lastName: "Bradley", age: 27, imageName: "yoshikuni"),
@@ -65,27 +65,27 @@ extension SamplesViewController: UITableViewDelegate {
                 return UsersTableCellModel(user: user)
             }
             let usersViewModel = UsersViewModel(cellModels: cellModels)
-            let usersViewController = UIStoryboard(name: String(UsersViewController), bundle: nil).instantiateInitialViewController() as! UsersViewController
+            let usersViewController = UIStoryboard(name: String(describing: UsersViewController), bundle: nil).instantiateInitialViewController() as! UsersViewController
             usersViewController.viewModel = usersViewModel
 
             self.navigationController?.pushViewController(usersViewController, animated: true)
 
 
-        case .ViewWithMutablePropertyUsingClosureForBinding:
+        case .viewWithMutablePropertyUsingClosureForBinding:
 
             let user = User(firstName: "Yoshikuni", lastName: "Kato", age: 27, imageName: "yoshikuni")
             let userViewModel = UserViewModel(user: user)
-            let userViewController = UIStoryboard(name: String(UserViewController), bundle: nil).instantiateInitialViewController() as! UserViewController
+            let userViewController = UIStoryboard(name: String(describing: UserViewController), bundle: nil).instantiateInitialViewController() as! UserViewController
             userViewController.viewModel = userViewModel
 
             self.navigationController?.pushViewController(userViewController, animated: true)
 
 
-        case .ViewWithMutablePropertyUsingRACForBinding:
+        case .viewWithMutablePropertyUsingRACForBinding:
 
             let user = User(firstName: "Yoshikuni", lastName: "Kato", age: 27, imageName: "yoshikuni")
             let userViewModel = UserViewModelWithRAC(user: user)
-            let userViewController = UIStoryboard(name: String(UserViewControllerWithRAC), bundle: nil).instantiateInitialViewController() as! UserViewControllerWithRAC
+            let userViewController = UIStoryboard(name: String(describing: UserViewControllerWithRAC), bundle: nil).instantiateInitialViewController() as! UserViewControllerWithRAC
             userViewController.viewModel = userViewModel
 
             self.navigationController?.pushViewController(userViewController, animated: true)
@@ -95,21 +95,21 @@ extension SamplesViewController: UITableViewDelegate {
 }
 
 enum MVVMSample {
-    case ViewWithoutMutableProperty
-    case TableViewWithoutMutableProperty
-    case ViewWithMutablePropertyUsingClosureForBinding
-    case ViewWithMutablePropertyUsingRACForBinding
+    case viewWithoutMutableProperty
+    case tableViewWithoutMutableProperty
+    case viewWithMutablePropertyUsingClosureForBinding
+    case viewWithMutablePropertyUsingRACForBinding
 
-    init?(indexPath: NSIndexPath) {
+    init?(indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
         case (0, 0):
-            self = .ViewWithoutMutableProperty
+            self = .viewWithoutMutableProperty
         case (0, 1):
-            self = .TableViewWithoutMutableProperty
+            self = .tableViewWithoutMutableProperty
         case (0, 2):
-            self = .ViewWithMutablePropertyUsingClosureForBinding
+            self = .viewWithMutablePropertyUsingClosureForBinding
         case (0, 3):
-            self = .ViewWithMutablePropertyUsingRACForBinding
+            self = .viewWithMutablePropertyUsingRACForBinding
         default:
             return nil
         }
@@ -117,13 +117,13 @@ enum MVVMSample {
 
     var title: String {
         switch self {
-        case .ViewWithoutMutableProperty:
+        case .viewWithoutMutableProperty:
             return "View without mutable property"
-        case .TableViewWithoutMutableProperty:
+        case .tableViewWithoutMutableProperty:
             return "TableView without mutable property"
-        case .ViewWithMutablePropertyUsingClosureForBinding:
+        case .viewWithMutablePropertyUsingClosureForBinding:
             return "View with mutable property. Using swift closure for binding."
-        case .ViewWithMutablePropertyUsingRACForBinding:
+        case .viewWithMutablePropertyUsingRACForBinding:
             return "View with mutable property. Using ReactiveCocoa for binding."
         }
     }

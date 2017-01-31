@@ -18,7 +18,7 @@ class UserViewControllerWithRAC: UIViewController {
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var imageFetchButton: UIButton!
 
-    private var imageFetchCocoaAction: CocoaAction?
+    fileprivate var imageFetchCocoaAction: CocoaAction?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,13 +35,13 @@ class UserViewControllerWithRAC: UIViewController {
 
         // button binding
         imageFetchCocoaAction = CocoaAction(viewModel.imageFetchAction, input: nil)
-        imageFetchButton.addTarget(imageFetchCocoaAction, action: CocoaAction.selector, forControlEvents: .TouchDown)
+        imageFetchButton.addTarget(imageFetchCocoaAction, action: CocoaAction.selector, for: .touchDown)
         viewModel
             .imageFetchAction
             .enabled
             .producer
             .startWithNext { [weak self] (enabled) in
-                self?.imageFetchButton.enabled = enabled
+                self?.imageFetchButton.isEnabled = enabled
         }
         
     }
