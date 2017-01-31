@@ -48,7 +48,7 @@ extension SamplesViewController: UITableViewDelegate {
 
             let user = User(firstName: "Emma", lastName: "Bradley", age: 27, imageName: "")
             let viewModel = UserNameViewModel(user: user)
-            let userNameViewController = UIStoryboard(name: String(describing: UserNameViewController), bundle: nil).instantiateInitialViewController() as! UserNameViewController
+            let userNameViewController = UIStoryboard(name: String(describing: UserNameViewController.self), bundle: nil).instantiateInitialViewController() as! UserNameViewController
             userNameViewController.viewModel = viewModel
 
             self.navigationController?.pushViewController(userNameViewController, animated: true)
@@ -65,7 +65,7 @@ extension SamplesViewController: UITableViewDelegate {
                 return UsersTableCellModel(user: user)
             }
             let usersViewModel = UsersViewModel(cellModels: cellModels)
-            let usersViewController = UIStoryboard(name: String(describing: UsersViewController), bundle: nil).instantiateInitialViewController() as! UsersViewController
+            let usersViewController = UIStoryboard(name: String(describing: UsersViewController.self), bundle: nil).instantiateInitialViewController() as! UsersViewController
             usersViewController.viewModel = usersViewModel
 
             self.navigationController?.pushViewController(usersViewController, animated: true)
@@ -75,7 +75,7 @@ extension SamplesViewController: UITableViewDelegate {
 
             let user = User(firstName: "Yoshikuni", lastName: "Kato", age: 27, imageName: "yoshikuni")
             let userViewModel = UserViewModel(user: user)
-            let userViewController = UIStoryboard(name: String(describing: UserViewController), bundle: nil).instantiateInitialViewController() as! UserViewController
+            let userViewController = UIStoryboard(name: String(describing: UserViewController.self), bundle: nil).instantiateInitialViewController() as! UserViewController
             userViewController.viewModel = userViewModel
 
             self.navigationController?.pushViewController(userViewController, animated: true)
@@ -85,7 +85,7 @@ extension SamplesViewController: UITableViewDelegate {
 
             let user = User(firstName: "Yoshikuni", lastName: "Kato", age: 27, imageName: "yoshikuni")
             let userViewModel = UserViewModelWithRAC(user: user)
-            let userViewController = UIStoryboard(name: String(describing: UserViewControllerWithRAC), bundle: nil).instantiateInitialViewController() as! UserViewControllerWithRAC
+            let userViewController = UIStoryboard(name: String(describing: UserViewControllerWithRAC.self), bundle: nil).instantiateInitialViewController() as! UserViewControllerWithRAC
             userViewController.viewModel = userViewModel
 
             self.navigationController?.pushViewController(userViewController, animated: true)

@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        let samplesViewController = UIStoryboard(name: String(describing: SamplesViewController), bundle: nil).instantiateInitialViewController() as! SamplesViewController
+        let samplesViewController = UIStoryboard(name: String(describing: SamplesViewController.self), bundle: nil).instantiateInitialViewController() as! SamplesViewController
 
         let navigationController = UINavigationController(rootViewController: samplesViewController)
 

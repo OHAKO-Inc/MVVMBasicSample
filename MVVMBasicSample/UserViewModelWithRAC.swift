@@ -8,6 +8,7 @@
 
 import UIKit
 import ReactiveCocoa
+import ReactiveSwift
 import Result
 
 struct UserViewModelWithRAC {
@@ -32,7 +33,7 @@ struct UserViewModelWithRAC {
                 let delay = 1.0 * Double(NSEC_PER_SEC)
                 let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
                 DispatchQueue.main.asyncAfter(deadline: time) { () -> () in
-                    observer.sendNext(UIImage(named: user.imageName))
+                    observer.send(value: UIImage(named: user.imageName))
                     observer.sendCompleted()
                 }
             }
@@ -41,10 +42,10 @@ struct UserViewModelWithRAC {
         image <~ imageFetchAction.values
         
         // for behavior observing
-        imageFetchAction.executing.producer.startWithNext { (executing) in
+        imageFetchAction.isExecuting.producer.startWithValues { (executing) in
             print("actionExecuting: \(executing)")
         }
-        imageFetchAction.enabled.producer.startWithNext { (enabled) in
+        imageFetchAction.isEnabled.producer.startWithValues { (enabled) in
             print("actionEnabled: \(enabled)")
         }
     }
