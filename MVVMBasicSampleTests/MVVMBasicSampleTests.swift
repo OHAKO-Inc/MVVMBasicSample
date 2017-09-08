@@ -68,7 +68,7 @@ class MVVMBasicSampleTests: XCTestCase {
         userViewModel.imageFetchButtonTapped()
 
         waitForExpectations(timeout: 1.5) { (error) in
-            print(error)
+            print(error as Any)
         }
 
     }
@@ -93,7 +93,7 @@ class MVVMBasicSampleTests: XCTestCase {
             .start()
 
         waitForExpectations(timeout: 1.5) { (error) in
-            print(error)
+            print(error as Any)
         }
     }
 
