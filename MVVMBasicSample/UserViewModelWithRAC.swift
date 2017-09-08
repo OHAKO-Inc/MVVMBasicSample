@@ -31,7 +31,7 @@ struct UserViewModelWithRAC {
             return SignalProducer<UIImage?, NoError> { (observer, _) in
                 let delay = 1.0 * Double(NSEC_PER_SEC)
                 let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-                DispatchQueue.main.asyncAfter(deadline: time) { _ -> Void in
+                DispatchQueue.main.asyncAfter(deadline: time) { 
                     observer.send(value: UIImage(named: user.imageName))
                     observer.sendCompleted()
                 }
