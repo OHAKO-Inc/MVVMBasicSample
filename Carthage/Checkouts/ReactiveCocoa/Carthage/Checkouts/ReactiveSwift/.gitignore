@@ -1,3 +1,6 @@
+# macOS
+.DS_Store
+
 # Xcode
 build/*
 *.pbxuser
@@ -8,12 +11,13 @@ build/*
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-*.xcworkspace
 !default.xcworkspace
 xcuserdata
 profile
 *.moved-aside
 PlaygroundUtility.remap
+*.xctimeline
+*.xcscmblueprint
 
 # SwiftPM
 .build
