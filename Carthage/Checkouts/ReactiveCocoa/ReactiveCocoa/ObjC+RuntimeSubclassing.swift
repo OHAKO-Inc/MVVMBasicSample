@@ -7,16 +7,59 @@ fileprivate let runtimeSubclassedKey = AssociationKey(default: false)
 /// has not been requested for the instance before.
 fileprivate let knownRuntimeSubclassKey = AssociationKey<AnyClass?>(default: nil)
 
+extension NSObject {
+	/// Swizzle the given selectors.
+	///
+	/// - warning: The swizzling **does not** apply on a per-instance basis. In
+	///            other words, repetitive swizzling of the same selector would
+	///            overwrite previous swizzling attempts, despite a different
+	///            instance being supplied.
+	///
+	/// - parameters:
+	///   - pairs: Tuples of selectors and the respective implementions to be
+	///            swapped in.
+	///   - key: An association key which determines if the swizzling has already
+	///          been performed.
+	internal func swizzle(_ pairs: (Selector, Any)..., key hasSwizzledKey: AssociationKey<Bool>) {
+		let subclass: AnyClass = swizzleClass(self)
+
+		try! ReactiveCocoa.synchronized(subclass) {
+			let subclassAssociations = Associations(subclass as AnyObject)
+
+			if !subclassAssociations.value(forKey: hasSwizzledKey) {
+				subclassAssociations.setValue(true, forKey: hasSwizzledKey)
+
+				for (selector, body) in pairs {
+					let method = class_getInstanceMethod(subclass, selector)
+					let typeEncoding = method_getTypeEncoding(method)!
+
+					if method_getImplementation(method) == _rac_objc_msgForward {
+						let succeeds = class_addMethod(subclass, selector.interopAlias, imp_implementationWithBlock(body), typeEncoding)
+						precondition(succeeds, "RAC attempts to swizzle a selector that has message forwarding enabled with a runtime injected implementation. This is unsupported in the current version.")
+					} else {
+						let succeeds = class_addMethod(subclass, selector, imp_implementationWithBlock(body), typeEncoding)
+						precondition(succeeds, "RAC attempts to swizzle a selector that has already a runtime injected implementation. This is unsupported in the current version.")
+					}
+				}
+			}
+		}
+	}
+}
+
 /// ISA-swizzle the class of the supplied instance.
 ///
 /// - note: If the instance has already been isa-swizzled, the swizzling happens
 ///         in place in the runtime subclass created by external parties.
 ///
+/// - warning: The swizzling **does not** apply on a per-instance basis. In
+///            other words, repetitive swizzling of the same selector would
+///            overwrite previous swizzling attempts, despite a different
+///            instance being supplied.
+///
 /// - parameters:
 ///   - instance: The instance to be swizzled.
 ///
-/// - returns:
-///   The runtime subclass of the perceived class of the instance.
+/// - returns: The runtime subclass of the perceived class of the instance.
 internal func swizzleClass(_ instance: NSObject) -> AnyClass {
 	if let knownSubclass = instance.associations.value(forKey: knownRuntimeSubclassKey) {
 		return knownSubclass
@@ -67,7 +110,7 @@ private func subclassName(of class: AnyClass) -> String {
 ///   - class: The class to swizzle.
 ///   - perceivedClass: The class to be reported by the methods.
 private func replaceGetClass(in class: AnyClass, decoy perceivedClass: AnyClass) {
-	let getClass: @convention(block) (Any) -> AnyClass = { _ in
+	let getClass: @convention(block) (UnsafeRawPointer?) -> AnyClass = { _ in
 		return perceivedClass
 	}
 

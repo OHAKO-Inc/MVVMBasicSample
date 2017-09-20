@@ -8,6 +8,7 @@
 
 import XCTest
 import ReactiveCocoa
+import ReactiveSwift
 import Result
 @testable import MVVMBasicSample
 
@@ -67,7 +68,7 @@ class MVVMBasicSampleTests: XCTestCase {
         userViewModel.imageFetchButtonTapped()
 
         waitForExpectations(timeout: 1.5) { (error) in
-            print(error)
+            print(error as Any)
         }
 
     }
@@ -78,20 +79,21 @@ class MVVMBasicSampleTests: XCTestCase {
 
         let user = User(firstName: "Yoshikuni", lastName: "Kato", age: 27, imageName: "yoshikuni")
         let userViewModel = UserViewModelWithRAC(user: user)
+        
         userViewModel
             .image
             .signal
-            .observeNext { (image) in
+            .observeValues { image in
                 XCTAssertNotNil(image, "image not nil")
                 expectation.fulfill()
         }
         userViewModel
             .imageFetchAction
-            .apply(nil)
+            .apply(())
             .start()
 
         waitForExpectations(timeout: 1.5) { (error) in
-            print(error)
+            print(error as Any)
         }
     }
 

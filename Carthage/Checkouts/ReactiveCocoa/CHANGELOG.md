@@ -1,3 +1,34 @@
+# master
+*Please put new entries at the top.
+
+# 6.0.1
+1. [Xcode 9 beta 5] Fixed an issue causing infinite recursion in the Swift runtime. (#3498, kudos to @andersio)
+
+# 6.0.0
+# 6.0.0-rc.3
+# 6.0.0-rc.2
+1. `NSObject` reactive extensions now work in generic environments that are limited to `NSObjectProtocol`. (#3484, kudos to @nickdomenicali)
+
+1. New reactive extension for `UIScrollView`: `scrollsToTop`. (#3481, kudos to @Qata)
+
+# 6.0.0-rc.1
+1. `UIButton.reactive.pressed` now reacts to the `primaryActionTriggered` control event, instead of `touchUpInside`, on iOS 9.0+ and tvOS 9.0+. (#3480, kudos to @andrei-kuzma)
+
+1. New reactive extension: `UITextField.reactive.selectedRangeValues`. (#3479, kudos to @Igor-Palaguta)
+
+# 6.0.0-alpha.1
+# 5.0.4
+1. UITextField text signals now react to `editingDidEndOnExit`. (#3474)
+
+1. Introduce `mapControlEvents(_:_:)` which is set to replace `controlEvents(_:_:)` in most cases. (#3472)
+
+   You should use `mapControlEvents` in general unless the state of the control — e.g. `text`, `state` — is **not** concerned. In other words, you should avoid using `map` on a control event signal to extract the state from the control.
+
+1. Resigning first responder when reacting to a `UITextField` signal no longer deadlocks. (#3453, #3472)
+
+1. New operator: `take(duringLifetimeOf:)`. (#3466, kudos to @andersio)
+   It is available on `Signal` and `SignalProducer`, and supports both Objective-C and native Swift objects.
+
 # 5.0
 
 ### Table of Contents
@@ -16,7 +47,7 @@ In version 5.0, we split ReactiveCocoa into multiple repositories for reasons ex
 
 **If you’re using both the Swift and Objective-C APIs**, you likely require both ReactiveCocoa and [ReactiveObjCBridge][], which depend on [ReactiveSwift][] and [ReactiveObjC][].
 
-**Attention:** If youre using ReactiveCocoa, you'll most likely need to import ReactiveSwift as well when using classes or operators that are implemented in ReactiveSwift.
+**Attention:** If you're using ReactiveCocoa, you'll most likely need to import ReactiveSwift as well when using classes or operators that are implemented in ReactiveSwift.
 
 #### ReactiveCocoa
 The ReactiveCocoa library is newly focused on Swift and the UI layers of Apple’s platforms, building on the work of [Rex](https://github.com/neilpa/Rex).
@@ -41,7 +72,7 @@ We hope that this move will enable continued support of ReactiveObjC.
 
 [ReactiveObjC]: https://github.com/ReactiveCocoa/ReactiveObjC
 
-##### ReactiveObjCBridge
+#### ReactiveObjCBridge
 Moving the Swift and Objective-C APIs to separate repositories meant that a new home was needed for the bridging layer between the two.
 
 This bridge is an important tool for users that are working in mixed-language code bases. Whether you are slowly adding Swift to a mature product built with the ReactiveCocoa Objective-C APIs, or looking to adopt ReactiveCocoa in a mixed code base, the bridge is required to communicate between Swift and Objective-C code.
@@ -68,7 +99,7 @@ RAC 5.0 includes a few object interception tools from ReactiveObjC, remastered f
 	
 	```swift
 	// Notify after every time `viewWillAppear(_:)` is called.
-	let appearing = view.reactive.trigger(for: #selector(viewWillAppear(_:)))
+	let appearing = viewController.reactive.trigger(for: #selector(UIViewController.viewWillAppear(_:)))
 	```
 	
 1. **Object Lifetime**

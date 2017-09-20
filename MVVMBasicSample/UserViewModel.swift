@@ -30,11 +30,12 @@ class UserViewModel: UserViewModelProtocol {
         // actually, some network requests
         let delay = 1.0 * Double(NSEC_PER_SEC)
         let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
-        DispatchQueue.main.asyncAfter(deadline: time) { [weak self] _ -> Void in
+        DispatchQueue.main.asyncAfter(deadline: time) { [weak self] in
             guard let _self = self else {
                 return
             }
             _self.image = UIImage(named: _self.user.imageName)
+            return
         }
     }
 
