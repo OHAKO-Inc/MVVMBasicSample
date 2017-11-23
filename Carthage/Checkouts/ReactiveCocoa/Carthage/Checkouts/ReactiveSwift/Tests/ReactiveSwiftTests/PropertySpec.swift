@@ -733,7 +733,6 @@ class PropertySpec: QuickSpec {
 					expect(mappedProperty.value) == 3
 				}
 
-#if swift(>=3.2)
 				it("should work with key paths") {
 					let property = MutableProperty("foo")
 					let mappedProperty = property.map(\.count)
@@ -742,7 +741,6 @@ class PropertySpec: QuickSpec {
 					property.value = "foobar"
 					expect(mappedProperty.value) == 6
 				}
-#endif
 			}
 
 			describe("combineLatest") {
@@ -1629,6 +1627,10 @@ class PropertySpec: QuickSpec {
 					var isDisposed = false
 
 					var outerObserver: Signal<String, NoError>.Observer!
+
+					// Mitigate the "was written to, but never read" warning.
+					_ = outerObserver
+
 					var signal: Signal<String, NoError>? = {
 						let (signal, observer) = Signal<String, NoError>.pipe()
 						outerObserver = observer

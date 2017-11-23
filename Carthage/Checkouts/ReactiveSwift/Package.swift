@@ -2,7 +2,9 @@ import Foundation
 import PackageDescription
 
 var isSwiftPackagerManagerTest: Bool {
-    return ProcessInfo.processInfo.environment["SWIFTPM_TEST_ReactiveSwift"] == "YES"
+    let environment = ProcessInfo.processInfo.environment
+    guard let value = environment["SWIFTPM_TEST_ReactiveSwift"] else { return false }
+    return NSString(string: value).boolValue
 }
 
 let package = Package(
@@ -13,7 +15,7 @@ let package = Package(
         ]
         if isSwiftPackagerManagerTest {
             deps += [
-                .Package(url: "https://github.com/Quick/Quick.git", majorVersion: 1, minor: 1),
+                .Package(url: "https://github.com/Quick/Quick.git", majorVersion: 1, minor: 2),
                 .Package(url: "https://github.com/Quick/Nimble.git", majorVersion: 7),
             ]
         }
