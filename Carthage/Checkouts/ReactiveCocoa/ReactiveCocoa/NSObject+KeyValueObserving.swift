@@ -43,16 +43,54 @@ extension Reactive where Base: NSObject {
 	/// - returns: A producer emitting values of the property specified by the 
 	///            key path.
 	public func signal(forKeyPath keyPath: String) -> Signal<Any?, NoError> {
-		return Signal { observer in
-			let disposable = CompositeDisposable()
-			disposable += KeyValueObserver.observe(
+		return Signal { observer, signalLifetime in
+			signalLifetime += KeyValueObserver.observe(
 				self.base,
 				keyPath: keyPath,
 				options: [.new],
 				action: observer.send
 			)
-			disposable += self.lifetime.observeEnded(observer.sendCompleted)
-			return disposable
+			signalLifetime += lifetime.observeEnded(observer.sendCompleted)
+		}
+	}
+}
+
+extension Property {
+	/// Create a property that observes the given key path of the given object. The
+	/// generic type `Value` can be any Swift type that is Objective-C bridgeable.
+	///
+	/// - parameters:
+	///   - object: An object to be observed.
+	///   - keyPath: The key path to observe.
+	public convenience init(object: NSObject, keyPath: String) {
+		// `Property(_:)` caches the latest value of the `DynamicProperty`, so it is
+		// saved to be used even after `object` deinitializes.
+		self.init(UnsafeKVOProperty(object: object, keyPath: keyPath))
+	}
+
+	// `Property(unsafeProducer:)` is private to ReactiveSwift. So the fact that
+	// `Property(_:)` uses only the producer is explioted here to achieve the same effect.
+	private final class UnsafeKVOProperty: PropertyProtocol {
+		var value: Value { fatalError() }
+		var signal: Signal<Value, NoError> { fatalError() }
+		let producer: SignalProducer<Value, NoError>
+
+		init(object: NSObject, keyPath: String) {
+			self.producer = object.reactive.producer(forKeyPath: keyPath).map { $0 as! Value }
+		}
+	}
+}
+
+extension BindingTarget {
+	/// Create a binding target that sets the given key path of the given object. The
+	/// generic type `Value` can be any Swift type that is Objective-C bridgeable.
+	///
+	/// - parameters:
+	///   - object: An object to be observed.
+	///   - keyPath: The key path to set.
+	public init(object: NSObject, keyPath: String) {
+		self.init(lifetime: object.reactive.lifetime) { [weak object] value in
+			object?.setValue(value, forKey: keyPath)
 		}
 	}
 }

@@ -1,6 +1,44 @@
 # master
 *Please add new entries at the top.*
 
+# 3.0.0
+1. Code Coverage is reenabled. (#553)
+   For Carthage users, version 0.26.0 and later is required for building App Store compatible binaries.
+
+# 3.0.0-rc.1
+
+1. Fixed integer overflow for `DispatchTimeInterval` in FoundationExtensions.swift (#506)
+
+# 3.0.0-alpha.1
+# 3.0.0-alpha.1
+1. `Signal` now uses `Lifetime` for resource management. (#404, kudos to @andersio)
+
+   The `Signal` initialzer now accepts a generator closure that is passed with the input `Observer` and the `Lifetime` as its arguments. The original variant accepting a single-argument generator closure is now obselete. This is a source breaking change.
+   
+   ```swift
+   // New: Add `Disposable`s to the `Lifetime`.
+   let candies = Signal<U, E> { (observer: Signal<U, E>.Observer, lifetime: Lifetime) in
+      lifetime += trickOrTreat.observe(observer)
+   }
+   
+   // Obsolete: Returning a `Disposable`.
+   let candies = Signal { (observer: Signal<U, E>.Observer) -> Disposable? in
+      return trickOrTreat.observe(observer)
+   }
+   ```
+
+1. `SignalProducer.startWithSignal` now returns the value of the setup closure. (#533, kudos to @Burgestrand)
+
+# 2.1.0-alpha.2
+1. Disabled code coverage data to allow app submissions with Xcode 9.0 (see https://github.com/Carthage/Carthage/issues/2056, kudos to @NachoSoto)
+
+# 2.1.0-alpha.1
+1. `Signal.Observer.action` has been deprecated. Use `Signal.Observer.send` instead. (#515)
+
+1. Workaround an unexpected EGAGIN error being returned by pthread in 32-bit ARM debug builds. (#508)
+
+1. The `SignalProducer` internals have undergone a significant refactoring, which bootstraps the effort to reduce the overhead of constant producers and producer compositions. (#487, kudos to @andersio)
+
 # 2.0.1
 1. Addressed the exceptionally high build time. (#495)
 
