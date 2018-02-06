@@ -1,49 +1,51 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="UoC-es-IlL">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UoC-es-IlL">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--User View Controller WithRAC-->
         <scene sceneID="yLt-YB-h0h">
             <objects>
                 <viewController storyboardIdentifier="UserViewController" id="UoC-es-IlL" customClass="UserViewControllerWithRAC" customModule="MVVMBasicSample" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Udy-Nr-RqS"/>
-                        <viewControllerLayoutGuide type="bottom" id="tn0-8v-Ev5"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="aBk-dT-nll">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a5V-Br-QOa">
-                                <rect key="frame" x="180" y="236" width="240" height="128"/>
+                                <rect key="frame" x="67.5" y="269.5" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="8Qt-Sz-xtZ"/>
                                     <constraint firstAttribute="width" constant="240" id="sNB-2x-nHB"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;full name&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upo-2i-eBm">
-                                <rect key="frame" x="254" y="190" width="92" height="21"/>
+                                <rect key="frame" x="141.5" y="223.5" width="92" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TP5-ga-3Bt">
-                                <rect key="frame" x="243" y="389" width="115" height="30"/>
+                                <rect key="frame" x="130" y="422.5" width="115" height="30"/>
                                 <state key="normal" title="fetch user image"/>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="TP5-ga-3Bt" firstAttribute="centerX" secondItem="aBk-dT-nll" secondAttribute="centerX" id="1eN-Rl-mqk"/>
+                            <constraint firstItem="TP5-ga-3Bt" firstAttribute="centerX" secondItem="eIt-7w-Fky" secondAttribute="centerX" id="1eN-Rl-mqk"/>
                             <constraint firstItem="TP5-ga-3Bt" firstAttribute="top" secondItem="a5V-Br-QOa" secondAttribute="bottom" constant="25" id="687-8g-hCi"/>
                             <constraint firstItem="a5V-Br-QOa" firstAttribute="top" secondItem="upo-2i-eBm" secondAttribute="bottom" constant="25" id="CEH-g9-XUb"/>
-                            <constraint firstItem="a5V-Br-QOa" firstAttribute="centerX" secondItem="aBk-dT-nll" secondAttribute="centerX" id="ihV-rn-Jov"/>
-                            <constraint firstItem="upo-2i-eBm" firstAttribute="centerX" secondItem="aBk-dT-nll" secondAttribute="centerX" id="qig-YB-Jew"/>
+                            <constraint firstItem="a5V-Br-QOa" firstAttribute="centerX" secondItem="eIt-7w-Fky" secondAttribute="centerX" id="ihV-rn-Jov"/>
+                            <constraint firstItem="upo-2i-eBm" firstAttribute="centerX" secondItem="eIt-7w-Fky" secondAttribute="centerX" id="qig-YB-Jew"/>
                             <constraint firstItem="a5V-Br-QOa" firstAttribute="centerY" secondItem="aBk-dT-nll" secondAttribute="centerY" id="wAH-39-maV"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="eIt-7w-Fky"/>
                     </view>
                     <connections>
                         <outlet property="imageFetchButton" destination="TP5-ga-3Bt" id="8Rp-7R-TJu"/>

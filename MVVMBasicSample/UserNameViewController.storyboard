@@ -1,34 +1,36 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zeg-w6-AVc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zeg-w6-AVc">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--User Name View Controller-->
         <scene sceneID="tZh-i3-nfo">
             <objects>
                 <viewController id="zeg-w6-AVc" customClass="UserNameViewController" customModule="MVVMBasicSample" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="xxv-qp-dRh"/>
-                        <viewControllerLayoutGuide type="bottom" id="KhS-v4-5X3"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="iyh-e3-2cm">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;full name&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Um-6f-Jns">
-                                <rect key="frame" x="254" y="289" width="92" height="21"/>
+                                <rect key="frame" x="141.5" y="323" width="92" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="1Um-6f-Jns" firstAttribute="centerY" secondItem="iyh-e3-2cm" secondAttribute="centerY" id="2kS-5b-t2m"/>
-                            <constraint firstItem="1Um-6f-Jns" firstAttribute="centerX" secondItem="iyh-e3-2cm" secondAttribute="centerX" id="lYL-Ti-RLE"/>
+                            <constraint firstItem="1Um-6f-Jns" firstAttribute="centerX" secondItem="C3v-4m-G0T" secondAttribute="centerX" id="lYL-Ti-RLE"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="C3v-4m-G0T"/>
                     </view>
                     <connections>
                         <outlet property="fullNameLabel" destination="1Um-6f-Jns" id="A6w-m0-tft"/>
