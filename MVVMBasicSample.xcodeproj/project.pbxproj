@@ -311,7 +311,8 @@
 				E331B8451CCA092F001E9F0F /* Sources */,
 				E331B8461CCA092F001E9F0F /* Frameworks */,
 				E331B8471CCA092F001E9F0F /* Resources */,
-				E364FFE31CCDE5A50070651A /* ShellScript */,
+				E364FFE31CCDE5A50070651A /* Carthage */,
+				E3076B21202B330E00A5FD46 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -436,7 +437,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		E364FFE31CCDE5A50070651A /* ShellScript */ = {
+		E3076B21202B330E00A5FD46 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		E364FFE31CCDE5A50070651A /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -446,6 +461,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/ReactiveCocoa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ReactiveSwift.framework",
 			);
+			name = Carthage;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
