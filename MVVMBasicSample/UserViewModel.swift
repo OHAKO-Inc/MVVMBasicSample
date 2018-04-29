@@ -31,10 +31,10 @@ class UserViewModel: UserViewModelProtocol {
         let delay = 1.0 * Double(NSEC_PER_SEC)
         let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: time) { [weak self] in
-            guard let _self = self else {
+            guard let unwrappedSelf = self else {
                 return
             }
-            _self.image = UIImage(named: _self.user.imageName)
+            unwrappedSelf.image = UIImage(named: unwrappedSelf.user.imageName)
             return
         }
     }
