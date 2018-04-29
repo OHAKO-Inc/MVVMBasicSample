@@ -1,6 +1,33 @@
 # master
 *Please put new entries at the top.
 
+# 7.2.0
+1. Fixed a compilation issue related to [SR-7299](https://bugs.swift.org/browse/SR-7299). (#3580)
+
+1. Improved the interoperability of method interception. (#3570, kudos to @andersio)
+
+1. Add `showsCancelButton`, `textDidBeginEditing` and `textDidEndEditing` extensions to `UISearchBar` (#3566)
+
+1. `NotificationCenter.reactive.keyboard(_:)` for system keyboard notification by the event types. (#3566, kudos to @ra1028)
+
+1. Add extensions for several properties on `UINavigationItem` (#3576, kudos to @asmallteapot).
+
+# 7.1.0
+# 7.1.0-rc.2
+1. Fix an issue preventing ReactiveCocoa from being built with the Swift 3.2 language mode. (#3556)
+
+# 7.1.0-rc.1
+1. Requires ReactiveSwift 3.1.0 Release Candidate 1. (#3555)
+
+1. Added reactive extension for AppKit's NSTextView. (#3549, kudos to @Palleas)
+
+# 7.0.1
+1. Added `tintColor` binding target to `UIView`. (#3542, kudos to @iv-mexx)
+
+1. Fixed `DynamicProperty` for optional properties. (#3548, kudos to @iv-mexx)
+
+1. Made `makeBindingTarget` available on Reactive extensions on all objects, not just `NSObject`. (#3545, kudos to @Burgestrand)
+
 # 7.0.0
 1. Update ReactiveSwift to 3.0.
 

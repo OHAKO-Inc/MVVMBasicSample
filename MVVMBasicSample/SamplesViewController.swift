@@ -37,7 +37,11 @@ extension SamplesViewController: UITableViewDataSource {
 }
 
 extension SamplesViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    // swiftlint:disable:next function_body_length
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+        ) {
         guard let sample = MVVMSample(indexPath: indexPath) else {
             return
         }
@@ -47,7 +51,10 @@ extension SamplesViewController: UITableViewDelegate {
 
             let user = User(firstName: "Emma", lastName: "Bradley", age: 27, imageName: "")
             let viewModel = UserNameViewModel(user: user)
-            let userNameViewController = UIStoryboard(name: String(describing: UserNameViewController.self), bundle: nil).instantiateInitialViewController() as! UserNameViewController
+            let userNameViewController = UIStoryboard(
+                name: String(describing: UserNameViewController.self),
+                bundle: nil
+                ).instantiateInitialViewController() as! UserNameViewController // swiftlint:disable:this force_cast
             userNameViewController.viewModel = viewModel
 
             self.navigationController?.pushViewController(userNameViewController, animated: true)
@@ -60,7 +67,10 @@ extension SamplesViewController: UITableViewDelegate {
                 User(firstName: "Edward", lastName: "Diaz", age: 10, imageName: "yoshikuni")
             ]
             let usersViewModel = UsersViewModel(cellModels: users.map(UsersTableCellModel.init))
-            let usersViewController = UIStoryboard(name: String(describing: UsersViewController.self), bundle: nil).instantiateInitialViewController() as! UsersViewController
+            let usersViewController = UIStoryboard(
+                name: String(describing: UsersViewController.self),
+                bundle: nil
+                ).instantiateInitialViewController() as! UsersViewController // swiftlint:disable:this force_cast
             usersViewController.viewModel = usersViewModel
 
             self.navigationController?.pushViewController(usersViewController, animated: true)
@@ -69,7 +79,10 @@ extension SamplesViewController: UITableViewDelegate {
 
             let user = User(firstName: "Yoshikuni", lastName: "Kato", age: 27, imageName: "yoshikuni")
             let userViewModel = UserViewModel(user: user)
-            let userViewController = UIStoryboard(name: String(describing: UserViewController.self), bundle: nil).instantiateInitialViewController() as! UserViewController
+            let userViewController = UIStoryboard(
+                name: String(describing: UserViewController.self),
+                bundle: nil
+                ).instantiateInitialViewController() as! UserViewController // swiftlint:disable:this force_cast
             userViewController.viewModel = userViewModel
 
             self.navigationController?.pushViewController(userViewController, animated: true)
@@ -78,7 +91,10 @@ extension SamplesViewController: UITableViewDelegate {
 
             let user = User(firstName: "Yoshikuni", lastName: "Kato", age: 27, imageName: "yoshikuni")
             let userViewModel = UserViewModelWithRAC(user: user)
-            let userViewController = UIStoryboard(name: String(describing: UserViewControllerWithRAC.self), bundle: nil).instantiateInitialViewController() as! UserViewControllerWithRAC
+            let userViewController = UIStoryboard(
+                name: String(describing: UserViewControllerWithRAC.self),
+                bundle: nil
+                ).instantiateInitialViewController() as! UserViewControllerWithRAC // swiftlint:disable:this force_cast
             userViewController.viewModel = userViewModel
 
             self.navigationController?.pushViewController(userViewController, animated: true)
@@ -90,8 +106,8 @@ extension SamplesViewController: UITableViewDelegate {
 enum MVVMSample {
     case viewWithoutMutableProperty
     case tableViewWithoutMutableProperty
-    case viewWithMutablePropertyUsingClosureForBinding
-    case viewWithMutablePropertyUsingRACForBinding
+    case viewWithMutablePropertyUsingClosureForBinding // swiftlint:disable:this identifier_name
+    case viewWithMutablePropertyUsingRACForBinding // swiftlint:disable:this identifier_name
 
     init?(indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
