@@ -19,7 +19,11 @@ extension UsersTableViewDataSource: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UsersTableViewCell.self), for: indexPath) as! UsersTableViewCell
+
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: String(describing: UsersTableViewCell.self),
+            for: indexPath
+            ) as! UsersTableViewCell // swiftlint:disable:this force_cast
         cell.configure(with: cellModels[indexPath.row])
         return cell
     }
