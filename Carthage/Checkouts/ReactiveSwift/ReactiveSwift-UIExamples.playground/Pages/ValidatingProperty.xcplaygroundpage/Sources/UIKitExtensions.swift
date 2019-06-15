@@ -1,7 +1,6 @@
 import Foundation
 import UIKit
 import ReactiveSwift
-import enum Result.NoError
 
 // These extensions mimics the ReactiveCocoa API, but not in a complete way.
 //
@@ -62,21 +61,21 @@ extension Reactive where Base: UILabel {
 }
 
 extension Reactive where Base: UISwitch {
-	public var isOnValues: Signal<Bool, NoError> {
-		return Signal { observer in
+	public var isOnValues: Signal<Bool, Never> {
+		return Signal { observer, lifetime in
 			let target = CocoaTarget { observer.send(value: ($0 as! UISwitch).isOn) }
 			base.addTarget(target, action: #selector(target.execute), for: .valueChanged)
-			return AnyDisposable { _ = target }
+			lifetime.observeEnded { _ = target }
 		}
 	}
 }
 
 extension Reactive where Base: UITextField {
-	public var continuousTextValues: Signal<String?, NoError> {
-		return Signal { observer in
+	public var continuousTextValues: Signal<String?, Never> {
+		return Signal { observer, lifetime in
 			let target = CocoaTarget { observer.send(value: ($0 as! UITextField).text) }
 			base.addTarget(target, action: #selector(target.execute), for: .editingChanged)
-			return AnyDisposable { _ = target }
+			lifetime.observeEnded { _ = target }
 		}
 	}
 }

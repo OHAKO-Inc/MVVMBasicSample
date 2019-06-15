@@ -3,17 +3,7 @@ import Nimble
 
 #if (os(macOS) || os(iOS) || os(tvOS) || os(watchOS)) && !SWIFT_PACKAGE
 
-final class RaisesExceptionTest: XCTestCase, XCTestCaseProvider {
-    static var allTests: [(String, (RaisesExceptionTest) -> () throws -> Void)] {
-        return [
-            ("testPositiveMatches", testPositiveMatches),
-            ("testPositiveMatchesWithClosures", testPositiveMatchesWithClosures),
-            ("testNegativeMatches", testNegativeMatches),
-            ("testNegativeMatchesDoNotCallClosureWithoutException", testNegativeMatchesDoNotCallClosureWithoutException),
-            ("testNegativeMatchesWithClosure", testNegativeMatchesWithClosure),
-        ]
-    }
-
+final class RaisesExceptionTest: XCTestCase {
     var anException = NSException(name: NSExceptionName("laugh"), reason: "Lulz", userInfo: ["key": "value"])
 
     func testPositiveMatches() {
@@ -90,7 +80,7 @@ final class RaisesExceptionTest: XCTestCase, XCTestCaseProvider {
     func testNegativeMatchesDoNotCallClosureWithoutException() {
         failsWithErrorMessage("expected to raise exception that satisfies block, got no exception") {
             expect { self.anException }.to(raiseException { (exception: NSException) in
-                expect(exception.name).to(equal(NSExceptionName(rawValue:"foo")))
+                expect(exception.name).to(equal(NSExceptionName(rawValue: "foo")))
             })
         }
 

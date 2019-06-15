@@ -9,7 +9,6 @@
 import UIKit
 import ReactiveCocoa
 import ReactiveSwift
-import Result
 
 struct UserViewModelWithRAC {
 
@@ -20,15 +19,15 @@ struct UserViewModelWithRAC {
     let image = MutableProperty<UIImage?>(nil)
 
     // input
-    let imageFetchAction: Action<Void, UIImage?, NoError>
+    let imageFetchAction: Action<Void, UIImage?, Never>
 
     init(user: User) {
         self.user = user
 
         fullName = "\(user.firstName) \(user.lastName)"
 
-        imageFetchAction = Action<Void, UIImage?, NoError> { _ -> SignalProducer<UIImage?, NoError> in
-            return SignalProducer<UIImage?, NoError> { (observer, _) in
+        imageFetchAction = Action<Void, UIImage?, Never> { _ -> SignalProducer<UIImage?, Never> in
+            return SignalProducer<UIImage?, Never> { (observer, _) in
                 let delay = 1.0 * Double(NSEC_PER_SEC)
                 let time  = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
                 DispatchQueue.main.asyncAfter(deadline: time) {

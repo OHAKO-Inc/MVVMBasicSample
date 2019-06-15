@@ -1,7 +1,6 @@
 import Foundation
 @testable import ReactiveCocoa
 import ReactiveSwift
-import enum Result.NoError
 import Quick
 import Nimble
 import CoreGraphics
@@ -606,7 +605,7 @@ class InterceptingSpec: QuickSpec {
 
 			it("should report the original class") {
 				_ = object.reactive.trigger(for: #selector(object.lifeIsGood))
-				expect((object as AnyObject).objcClass).to(beIdenticalTo(originalClass))
+				expect((object as AnyObject).objcClass!).to(beIdenticalTo(originalClass))
 			}
 
 			it("should report the original class when it's KVO'd after dynamically subclassing") {
@@ -616,7 +615,7 @@ class InterceptingSpec: QuickSpec {
 					.producer(forKeyPath: #keyPath(InterceptedObject.objectValue))
 					.start()
 
-				expect((object as AnyObject).objcClass).to(beIdenticalTo(originalClass))
+				expect((object as AnyObject).objcClass!).to(beIdenticalTo(originalClass))
 			}
 
 			it("should report the original class when it's KVO'd before dynamically subclassing") {
@@ -625,7 +624,7 @@ class InterceptingSpec: QuickSpec {
 					.start()
 
 				_ = object.reactive.trigger(for: #selector(object.lifeIsGood))
-				expect((object as AnyObject).objcClass).to(beIdenticalTo(originalClass))
+				expect((object as AnyObject).objcClass!).to(beIdenticalTo(originalClass))
 			}
 		}
 

@@ -10,7 +10,16 @@ enum EquatableError: Error {
     case parameterized(x: Int)
 }
 
-extension EquatableError : Equatable {
+extension EquatableError: CustomDebugStringConvertible {
+    var debugDescription: String {
+        switch self {
+        case .parameterized(let x):
+            return "parameterized(x: \(x))"
+        }
+    }
+}
+
+extension EquatableError: Equatable {
 }
 
 func == (lhs: EquatableError, rhs: EquatableError) -> Bool {
@@ -21,29 +30,19 @@ func == (lhs: EquatableError, rhs: EquatableError) -> Bool {
 }
 
 enum CustomDebugStringConvertibleError: Error {
+    // swiftlint:disable identifier_name
     case a
     case b
+    // swiftlint:enable identifier_name
 }
 
-extension CustomDebugStringConvertibleError : CustomDebugStringConvertible {
+extension CustomDebugStringConvertibleError: CustomDebugStringConvertible {
     var debugDescription: String {
         return "code=\(_code)"
     }
 }
 
 final class ThrowErrorTest: XCTestCase, XCTestCaseProvider {
-    static var allTests: [(String, (ThrowErrorTest) -> () throws -> Void)] {
-        return [
-            ("testPositiveMatches", testPositiveMatches),
-            ("testPositiveMatchesWithClosures", testPositiveMatchesWithClosures),
-            ("testNegativeMatches", testNegativeMatches),
-            ("testPositiveNegatedMatches", testPositiveNegatedMatches),
-            ("testNegativeNegatedMatches", testNegativeNegatedMatches),
-            ("testNegativeMatchesDoNotCallClosureWithoutError", testNegativeMatchesDoNotCallClosureWithoutError),
-            ("testNegativeMatchesWithClosure", testNegativeMatchesWithClosure),
-        ]
-    }
-
     func testPositiveMatches() {
         expect { throw NimbleError.laugh }.to(throwError())
         expect { throw NimbleError.laugh }.to(throwError(NimbleError.laugh))
@@ -80,11 +79,11 @@ final class ThrowErrorTest: XCTestCase, XCTestCaseProvider {
 
     func testNegativeMatches() {
         // Same case, different arguments
-        failsWithErrorMessage("expected to throw error <parameterized(2)>, got <parameterized(1)>") {
+        failsWithErrorMessage("expected to throw error <parameterized(x: 2)>, got <parameterized(x: 1)>") {
             expect { throw EquatableError.parameterized(x: 1) }.to(throwError(EquatableError.parameterized(x: 2)))
         }
         // Same case, different arguments
-        failsWithErrorMessage("expected to throw error <parameterized(2)>, got <parameterized(1)>") {
+        failsWithErrorMessage("expected to throw error <parameterized(x: 2)>, got <parameterized(x: 1)>") {
             expect { throw EquatableError.parameterized(x: 1) }.to(throwError(EquatableError.parameterized(x: 2)))
         }
         // Different case

@@ -3,24 +3,6 @@ import XCTest
 import Nimble
 
 final class EqualTest: XCTestCase, XCTestCaseProvider {
-    static var allTests: [(String, (EqualTest) -> () throws -> Void)] {
-        return [
-            ("testEquality", testEquality),
-            ("testArrayEquality", testArrayEquality),
-            ("testSetEquality", testSetEquality),
-            ("testDoesNotMatchNils", testDoesNotMatchNils),
-            ("testDictionaryEquality", testDictionaryEquality),
-            ("testDataEquality", testDataEquality),
-            ("testNSObjectEquality", testNSObjectEquality),
-            ("testOperatorEquality", testOperatorEquality),
-            ("testOperatorEqualityWithArrays", testOperatorEqualityWithArrays),
-            ("testOperatorEqualityWithDictionaries", testOperatorEqualityWithDictionaries),
-            ("testOptionalEquality", testOptionalEquality),
-            ("testArrayOfOptionalsEquality", testArrayOfOptionalsEquality),
-            ("testDictionariesWithDifferentSequences", testDictionariesWithDifferentSequences),
-        ]
-    }
-
     func testEquality() {
         expect(1 as CInt).to(equal(1 as CInt))
         expect(1 as CInt).to(equal(1))
@@ -139,7 +121,7 @@ final class EqualTest: XCTestCase, XCTestCaseProvider {
 
 #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
         expect(NSDictionary(object: "bar", forKey: "foo" as NSString)).to(equal(["foo": "bar"]))
-        expect(NSDictionary(object: "bar", forKey: "foo" as NSString) as? [String:String]).to(equal(expected))
+        expect(NSDictionary(object: "bar", forKey: "foo" as NSString) as? [String: String]).to(equal(expected))
 #endif
     }
 
@@ -152,6 +134,7 @@ final class EqualTest: XCTestCase, XCTestCaseProvider {
         expect(actual).toNot(equal(unexpected))
 
         #if os(Linux)
+            // swiftlint:disable:next todo
             // FIXME: Swift on Linux triggers a segfault when calling NSData's hash() (last checked on 03-11)
             let expectedErrorMessage = "expected to equal <Data<length=9>>, got <Data<length=6>>"
         #else
@@ -165,10 +148,10 @@ final class EqualTest: XCTestCase, XCTestCaseProvider {
     }
 
     func testNSObjectEquality() {
-        expect(NSNumber(value:1)).to(equal(NSNumber(value:1)))
-        expect(NSNumber(value:1)) == NSNumber(value:1)
-        expect(NSNumber(value:1)) != NSNumber(value:2)
-        expect { NSNumber(value:1) }.to(equal(1))
+        expect(NSNumber(value: 1)).to(equal(NSNumber(value: 1)))
+        expect(NSNumber(value: 1)) == NSNumber(value: 1)
+        expect(NSNumber(value: 1)) != NSNumber(value: 2)
+        expect { NSNumber(value: 1) }.to(equal(1))
     }
 
     func testOperatorEquality() {

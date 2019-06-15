@@ -7,18 +7,9 @@ private class TestClassConformingToProtocol: TestProtocol {}
 private struct TestStructConformingToProtocol: TestProtocol {}
 
 final class BeAnInstanceOfTest: XCTestCase, XCTestCaseProvider {
-    static var allTests: [(String, (BeAnInstanceOfTest) -> () throws -> Void)] {
-        return [
-            ("testPositiveMatch", testPositiveMatch),
-            ("testPositiveMatchSwiftTypes", testPositiveMatchSwiftTypes),
-            ("testFailureMessages", testFailureMessages),
-            ("testFailureMessagesSwiftTypes", testFailureMessagesSwiftTypes),
-        ]
-    }
-
     func testPositiveMatch() {
         expect(NSNull()).to(beAnInstanceOf(NSNull.self))
-        expect(NSNumber(value:1)).toNot(beAnInstanceOf(NSDate.self))
+        expect(NSNumber(value: 1)).toNot(beAnInstanceOf(NSDate.self))
     }
 
     enum TestEnum {
@@ -55,10 +46,10 @@ final class BeAnInstanceOfTest: XCTestCase, XCTestCaseProvider {
         let numberTypeName = "NSNumber"
 #endif
         failsWithErrorMessage("expected to be an instance of NSString, got <\(numberTypeName) instance>") {
-            expect(NSNumber(value:1)).to(beAnInstanceOf(NSString.self))
+            expect(NSNumber(value: 1)).to(beAnInstanceOf(NSString.self))
         }
         failsWithErrorMessage("expected to not be an instance of \(numberTypeName), got <\(numberTypeName) instance>") {
-            expect(NSNumber(value:1)).toNot(beAnInstanceOf(type(of: NSNumber(value:1))))
+            expect(NSNumber(value: 1)).toNot(beAnInstanceOf(type(of: NSNumber(value: 1))))
         }
     }
 

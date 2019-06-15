@@ -9,7 +9,6 @@
 import XCTest
 import ReactiveCocoa
 import ReactiveSwift
-import Result
 @testable import MVVMBasicSample
 
 class MVVMBasicSampleTests: XCTestCase {

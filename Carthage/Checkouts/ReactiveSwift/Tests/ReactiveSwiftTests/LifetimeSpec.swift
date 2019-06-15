@@ -1,12 +1,11 @@
 import Quick
 import Nimble
 import ReactiveSwift
-import Result
 
 final class LifetimeSpec: QuickSpec {
 	override func spec() {
 		describe("Lifetime") {
-			it("should complete its lifetime ended signal when the it deinitializes") {
+			it("should complete its lifetime ended signal when the token deinitializes") {
 				let object = MutableReference(TestObject())
 
 				var isCompleted = false
@@ -15,6 +14,18 @@ final class LifetimeSpec: QuickSpec {
 				expect(isCompleted) == false
 
 				object.value = nil
+				expect(isCompleted) == true
+			}
+
+			it("should complete its lifetime ended signal when the token is disposed of") {
+				let object = MutableReference(TestObject())
+
+				var isCompleted = false
+
+				object.value!.lifetime.ended.observeCompleted { isCompleted = true }
+				expect(isCompleted) == false
+
+				object.value!.disposeToken()
 				expect(isCompleted) == true
 			}
 
@@ -91,4 +102,8 @@ internal final class MutableReference<Value: AnyObject> {
 internal final class TestObject {
 	private let token = Lifetime.Token()
 	var lifetime: Lifetime { return Lifetime(token) }
+
+	func disposeToken() {
+		token.dispose()
+	}
 }

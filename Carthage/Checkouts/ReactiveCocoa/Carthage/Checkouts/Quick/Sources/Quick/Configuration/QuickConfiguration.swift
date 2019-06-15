@@ -10,7 +10,7 @@ open class QuickConfiguration: NSObject {
     open class func configure(_ configuration: Configuration) {}
 }
 
-#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+#if canImport(Darwin)
 
 internal func qck_enumerateSubclasses<T: AnyObject>(_ klass: T.Type, block: (T.Type) -> Void) {
     var classesCount = objc_getClassList(nil, 0)
@@ -26,9 +26,9 @@ internal func qck_enumerateSubclasses<T: AnyObject>(_ klass: T.Type, block: (T.T
     for i in 0..<classesCount {
         subclass = classes[Int(i)]
 
-        if let superclass = class_getSuperclass(subclass), superclass === klass {
-            block(subclass as! T.Type) // swiftlint:disable:this force_cast
-        }
+        guard let superclass = class_getSuperclass(subclass), superclass == klass else { continue }
+
+        block(subclass as! T.Type) // swiftlint:disable:this force_cast
     }
 
     free(classes)
