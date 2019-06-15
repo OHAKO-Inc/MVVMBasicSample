@@ -25,10 +25,8 @@
 		E331B88A1CCA1391001E9F0F /* UsersTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331B8891CCA1391001E9F0F /* UsersTableViewDataSource.swift */; };
 		E331B88C1CCA13CD001E9F0F /* UsersTableCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331B88B1CCA13CD001E9F0F /* UsersTableCellModel.swift */; };
 		E331B88E1CCA143B001E9F0F /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E331B88D1CCA143B001E9F0F /* UsersViewModel.swift */; };
-		E33BCD6F1CCF21FE00C4AD61 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E364FFE11CCDE5A20070651A /* Result.framework */; };
 		E33BCD701CCF220100C4AD61 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E364FFDF1CCDE59F0070651A /* ReactiveCocoa.framework */; };
 		E364FFE01CCDE59F0070651A /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E364FFDF1CCDE59F0070651A /* ReactiveCocoa.framework */; };
-		E364FFE21CCDE5A20070651A /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E364FFE11CCDE5A20070651A /* Result.framework */; };
 		E364FFE71CCDEA040070651A /* UserViewControllerWithRAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E364FFE61CCDEA040070651A /* UserViewControllerWithRAC.swift */; };
 		E364FFEB1CCDEA420070651A /* UserViewModelWithRAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E364FFEA1CCDEA420070651A /* UserViewModelWithRAC.swift */; };
 		E3ADF60C1CCDCCFF008C0091 /* UserNameViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3ADF60B1CCDCCFF008C0091 /* UserNameViewController.storyboard */; };
@@ -95,7 +93,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E364FFE01CCDE59F0070651A /* ReactiveCocoa.framework in Frameworks */,
-				E364FFE21CCDE5A20070651A /* Result.framework in Frameworks */,
 				E323E2621E404604007AE072 /* ReactiveSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,7 +101,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E33BCD6F1CCF21FE00C4AD61 /* Result.framework in Frameworks */,
 				E33BCD701CCF220100C4AD61 /* ReactiveCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,6 +386,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -449,7 +446,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		E364FFE31CCDE5A50070651A /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -457,7 +454,6 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ReactiveCocoa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ReactiveSwift.framework",
 			);
@@ -466,7 +462,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

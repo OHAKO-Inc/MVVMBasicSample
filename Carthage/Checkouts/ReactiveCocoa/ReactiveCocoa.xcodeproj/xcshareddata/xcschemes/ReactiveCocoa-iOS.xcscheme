@@ -1,25 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "NO"
       buildImplicitDependencies = "NO">
       <BuildActionEntries>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D454807C1A957361009D7229"
-               BuildableName = "Result.framework"
-               BlueprintName = "Result-iOS"
-               ReferencedContainer = "container:Carthage/Checkouts/Result/Result.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
@@ -90,6 +76,20 @@
                ReferencedContainer = "container:ReactiveCocoa.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9A73DFAC216D3C550069AD76"
+               BuildableName = "ReactiveMapKit.framework"
+               BlueprintName = "ReactiveMapKit-iOS"
+               ReferencedContainer = "container:ReactiveCocoa.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -114,7 +114,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9A16753C1F80C35100B63650"
                BuildableName = "ReactiveMapKitTests.xctest"
-               BlueprintName = "ReactiveMapKitTests"
+               BlueprintName = "ReactiveMapKitTests-iOS"
                ReferencedContainer = "container:ReactiveCocoa.xcodeproj">
             </BuildableReference>
          </TestableReference>

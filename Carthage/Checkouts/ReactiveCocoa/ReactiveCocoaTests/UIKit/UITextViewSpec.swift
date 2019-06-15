@@ -3,7 +3,6 @@ import ReactiveCocoa
 import UIKit
 import Quick
 import Nimble
-import enum Result.NoError
 
 class UITextViewSpec: QuickSpec {
 	override func spec() {
@@ -11,7 +10,7 @@ class UITextViewSpec: QuickSpec {
 		weak var _textView: UITextView?
 
 		#if swift(>=4.0)
-		let attributes: [NSAttributedStringKey: Any] = [
+		let attributes: [NSAttributedString.Key: Any] = [
 			.font: UIFont.systemFont(ofSize: 18),
 			.foregroundColor: UIColor.red
 		]
@@ -44,7 +43,7 @@ class UITextViewSpec: QuickSpec {
 				latestValue = text
 			}
 
-			NotificationCenter.default.post(name: .UITextViewTextDidEndEditing, object: textView)
+			NotificationCenter.default.post(name: UITextView.textDidEndEditingNotification, object: textView)
 			expect(latestValue) == textView.text
 		}
 
@@ -56,7 +55,7 @@ class UITextViewSpec: QuickSpec {
 				latestValue = text
 			}
 
-			NotificationCenter.default.post(name: .UITextViewTextDidChange, object: textView)
+			NotificationCenter.default.post(name: UITextView.textDidChangeNotification, object: textView)
 			expect(latestValue) == textView.text
 		}
 		
@@ -66,7 +65,7 @@ class UITextViewSpec: QuickSpec {
 			
 			textView.attributedText = NSAttributedString(string: "")
 			
-			let (pipeSignal, observer) = Signal<NSAttributedString?, NoError>.pipe()
+			let (pipeSignal, observer) = Signal<NSAttributedString?, Never>.pipe()
 			textView.reactive.attributedText <~ SignalProducer(pipeSignal)
 			
 			observer.send(value: firstChange)
@@ -84,7 +83,7 @@ class UITextViewSpec: QuickSpec {
 				latestValue = attributedText
 			}
 			
-			NotificationCenter.default.post(name: .UITextViewTextDidEndEditing, object: textView)
+			NotificationCenter.default.post(name: UITextView.textDidEndEditingNotification, object: textView)
 			expect(latestValue) == textView.attributedText
 		}
 		
@@ -96,7 +95,7 @@ class UITextViewSpec: QuickSpec {
 				latestValue = attributedText
 			}
 			
-			NotificationCenter.default.post(name: .UITextViewTextDidChange, object: textView)
+			NotificationCenter.default.post(name: UITextView.textDidChangeNotification, object: textView)
 			expect(latestValue) == textView.attributedText
 		}
 

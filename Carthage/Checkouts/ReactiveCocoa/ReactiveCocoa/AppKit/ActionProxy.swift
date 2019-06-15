@@ -1,18 +1,17 @@
 import AppKit
 import ReactiveSwift
-import enum Result.NoError
 
 internal final class ActionProxy<Owner: AnyObject>: NSObject {
 	internal weak var target: AnyObject?
 	internal var action: Selector?
-	internal let invoked: Signal<Owner, NoError>
+	internal let invoked: Signal<Owner, Never>
 
-	private let observer: Signal<Owner, NoError>.Observer
+	private let observer: Signal<Owner, Never>.Observer
 	private unowned let owner: Owner
 
 	internal init(owner: Owner, lifetime: Lifetime) {
 		self.owner = owner
-		(invoked, observer) = Signal<Owner, NoError>.pipe()
+		(invoked, observer) = Signal<Owner, Never>.pipe()
 		lifetime.ended.observeCompleted(observer.sendCompleted)
 	}
 
@@ -41,7 +40,7 @@ extension Reactive where Base: NSObject, Base: ActionMessageSending {
 	internal var proxy: ActionProxy<Base> {
 		let key = AssociationKey<ActionProxy<Base>?>((#function as StaticString))
 
-		return base.synchronized {
+		return synchronized(base) {
 			if let proxy = base.associations.value(forKey: key) {
 				return proxy
 			}

@@ -8,7 +8,6 @@
 
 import Foundation
 import Dispatch
-import Result
 import Nimble
 import Quick
 import ReactiveSwift
@@ -63,7 +62,7 @@ class ActionSpec: QuickSpec {
 				var property: MutableProperty<Bool>? = MutableProperty(false)
 				weak var weakProperty = property
 
-				var action: Action<(), (), NoError>? = Action(state: property!, enabledIf: { _ in true }) { _, _ in
+				var action: Action<(), (), Never>? = Action(state: property!, enabledIf: { _ in true }) { _, _ in
 					return .empty
 				}
 
@@ -166,10 +165,10 @@ class ActionSpec: QuickSpec {
 
 			it("should not deadlock") {
 				final class ViewModel {
-					let action2 = Action<(), (), NoError> { _ in SignalProducer(value: ()) }
+					let action2 = Action<(), (), Never> { _ in SignalProducer(value: ()) }
 				}
 
-				let action1 = Action<(), ViewModel, NoError> { _ in SignalProducer(value: ViewModel()) }
+				let action1 = Action<(), ViewModel, Never> { _ in SignalProducer(value: ViewModel()) }
 
 				// Fixed in #267. (https://github.com/ReactiveCocoa/ReactiveSwift/pull/267)
 				//
@@ -191,7 +190,7 @@ class ActionSpec: QuickSpec {
 				it("should not loop indefinitely") {
 					let condition = MutableProperty(1)
 
-					let action = Action<Void, Void, NoError>(state: condition, enabledIf: { $0 == 0 }) { _, _ in
+					let action = Action<Void, Void, Never>(state: condition, enabledIf: { $0 == 0 }) { _, _ in
 						return .empty
 					}
 
@@ -304,7 +303,7 @@ class ActionSpec: QuickSpec {
 			describe("bindings") {
 				it("should execute successfully") {
 					var receivedValue: String?
-					let (signal, observer) = Signal<Int, NoError>.pipe()
+					let (signal, observer) = Signal<Int, Never>.pipe()
 
 					action.values.observeValues { receivedValue = $0 }
 
@@ -337,7 +336,7 @@ class ActionSpec: QuickSpec {
 		}
 
 		describe("using a property as input") {
-			let echo: (Int) -> SignalProducer<Int, NoError> = SignalProducer.init(value:)
+			let echo: (Int) -> SignalProducer<Int, Never> = SignalProducer.init(value:)
 
 			it("executes the action with the property's current value") {
 				let input = MutableProperty(0)
@@ -359,7 +358,7 @@ class ActionSpec: QuickSpec {
 			it("allows a non-void input type") {
 				let state = MutableProperty(1)
 
-				let add = Action<Int, Int, NoError>(state: state) { state, input in
+				let add = Action<Int, Int, Never>(state: state) { state, input in
 					SignalProducer(value: state + input)
 				}
 
@@ -387,7 +386,7 @@ class ActionSpec: QuickSpec {
 			it("allows a different input type while unwrapping an optional state property") {
 				let state = MutableProperty<Int?>(nil)
 
-				let add = Action<String, Int?, NoError>(unwrapping: state) { state, input -> SignalProducer<Int?, NoError> in
+				let add = Action<String, Int?, Never>(unwrapping: state) { state, input -> SignalProducer<Int?, Never> in
 					guard let input = Int(input) else { return SignalProducer(value: nil) }
 					return SignalProducer(value: state + input)
 				}
@@ -409,6 +408,51 @@ class ActionSpec: QuickSpec {
 				state.value = -1
 				add.apply("-10").start()
 
+				expect(values) == [3, 4, -11]
+			}
+			
+			it("is disabled if the validating property does not hold a valid value") {
+				enum TestValidationError: Error { case generic }
+				typealias PropertyType = ValidatingProperty<Int, TestValidationError>
+				let decisions: [PropertyType.Decision] = [.valid, .invalid(.generic), .coerced(10, nil)]
+				let input = PropertyType(0, { decisions[$0] })
+				let action = Action(validated: input, execute: echo)
+				expect(action.isEnabled.value) == true
+				expect(action.apply().single()?.value) == 0
+				input.value = 1
+				expect(action.isEnabled.value) == false
+				expect(action.apply().single()?.error).toNot(beNil())
+				input.value = 2
+				expect(action.isEnabled.value) == true
+				expect(action.apply().single()?.value) == 10
+			}
+			
+			it("allows a different input type while using a validating property as its state") {
+				enum TestValidationError: Error { case generic }
+				let state = ValidatingProperty<Int?, TestValidationError>(nil, { $0 != nil ? .valid : .invalid(.generic) })
+				
+				let add = Action<String, Int?, Never>(validated: state) { state, input -> SignalProducer<Int?, Never> in
+					guard let input = Int(input), let state = state else { return SignalProducer(value: nil) }
+					return SignalProducer(value: state + input)
+				}
+				
+				var values: [Int] = []
+				add.values.observeValues { output in
+					if let output = output {
+						values.append(output)
+					}
+				}
+				
+				expect(add.isEnabled.value) == false
+				state.value = 1
+				expect(add.isEnabled.value) == true
+				
+				add.apply("2").start()
+				add.apply("3").start()
+				
+				state.value = -1
+				add.apply("-10").start()
+				
 				expect(values) == [3, 4, -11]
 			}
 		}
